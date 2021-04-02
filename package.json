@@ -8,7 +8,9 @@
   "keywords": [
     "GitHub",
     "Actions",
-    "JavaScript"
+    "npm",
+    "diff",
+    "dependency"
   ],
   "main": "lib/index.js",
   "engines": {
