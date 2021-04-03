@@ -1,7 +1,7 @@
 {
-  "name": "javascript-action",
-  "version": "1.0.0",
-  "description": "JavaScript Action Template",
+  "name": "npm-diff-action",
+  "version": "0.0.1",
+  "description": "`npm diff` Action",
   "author": "Masafumi Koba",
   "license": "MIT",
   "repository": "ybiquitous/npm-diff-action",
