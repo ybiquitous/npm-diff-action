@@ -1,5 +1,25 @@
 name: "npm diff"
 description: "`npm diff` Action"
+inputs:
+  token:
+    description: "GitHub token"
+    required: false
+    default: ${{ github.token }}
+  repository:
+    description: "Repository"
+    required: false
+    default: ${{ github.repository }}
+  pull_request_title:
+    description: "Pull request title"
+    required: false
+    default: ${{ github.event.pull_request.title }}
+  pull_request_number:
+    description: "Pull request number"
+    required: false
+    default: ${{ github.event.pull_request.number }}
+  extract_regexp:
+    description: "Extract regexp pattern"
+    required: false
 runs:
   using: "node12"
   main: "dist/index.js"
