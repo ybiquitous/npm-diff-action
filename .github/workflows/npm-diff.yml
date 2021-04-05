@@ -2,7 +2,7 @@ name: npm diff
 
 on:
   pull_request:
-    types: [opened, assigned]
+    types: [assigned]
 
 jobs:
   post-comment:

@@ -66,6 +66,8 @@ ${diff.trim()}
 \`\`\`\`
 
 </details>
+
+Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
 `;
 };
 
