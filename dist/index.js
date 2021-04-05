@@ -61,9 +61,9 @@ const buildCommentBody = (cmd, cmdArgs, diff) => {
 <details>
 <summary><code>${cmdLine}</code></summary>
 
-\`\`\`diff
+\`\`\`\`diff
 ${diff.trim()}
-\`\`\`
+\`\`\`\`
 
 </details>
 `;

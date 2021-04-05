@@ -59,7 +59,7 @@ index v1.2.3..v1.2.4 100644
 <details>
 <summary><code>npm diff --diff=foo@1.2.3 --diff=foo@1.2.4</code></summary>
 
-\`\`\`diff
+\`\`\`\`diff
 diff --git a/index.js b/index.js
 index v1.2.3..v1.2.4 100644
 --- a/index.js
@@ -72,7 +72,7 @@ index v1.2.3..v1.2.4 100644
  		'subject-case': [
  			2,
  			'never',
-\`\`\`
+\`\`\`\`
 
 </details>
 `);
