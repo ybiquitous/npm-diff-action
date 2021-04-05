@@ -4,7 +4,7 @@ This action posts a PR comment including output of the [`npm diff`](https://docs
 
 ## Usage
 
-TODO...
+Create a `.github/workflows/npm-diff.yml` file with the content below:
 
 ```yaml
 name: npm diff
