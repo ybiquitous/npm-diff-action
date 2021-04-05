@@ -75,6 +75,8 @@ index v1.2.3..v1.2.4 100644
 \`\`\`\`
 
 </details>
+
+Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
 `);
   });
 });
