@@ -75,7 +75,7 @@ ${diff.trim()}
 const postComment = (
   body,
   { client, repository, number } = {
-    client: github.getOctokit(core.getInput("github_token")),
+    client: github.getOctokit(core.getInput("token")),
     repository: core.getInput("repository"),
     number: core.getInput("pull_request_number"),
   }

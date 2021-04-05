@@ -1,7 +1,7 @@
 name: "npm diff"
 description: "`npm diff` Action"
 inputs:
-  github_token:
+  token:
     description: "GitHub token"
     required: false
     default: ${{ github.token }}
