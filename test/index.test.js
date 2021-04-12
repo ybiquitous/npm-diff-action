@@ -1,3 +1,4 @@
+const { execFileSync } = require("child_process");
 const { RequestError } = require("@octokit/request-error");
 const {
   extractUpdateInfo,
@@ -38,6 +39,18 @@ describe("extractUpdateInfo()", () => {
   });
 });
 
+describe("npmDiffCommand()", () => {
+  test("success", () => {
+    const [cmd, args] = npmDiffCommand({ name: "typescript", from: "4.2.3", to: "4.2.4" });
+    expect(execFileSync(cmd, args, { encoding: "utf8" })).toMatchSnapshot();
+  });
+
+  test("failure", () => {
+    const [cmd, args] = npmDiffCommand({ name: "typescript", from: "4.2.3", to: "unknown" });
+    expect(() => execFileSync(cmd, args, { encoding: "utf8" })).toThrow("Command failed: npm diff");
+  });
+});
+
 describe("buildCommentBody()", () => {
   const [cmd, cmdArgs] = npmDiffCommand({ name: "foo", from: "1.2.3", to: "1.2.4" });
   const diff = `
@@ -58,7 +71,7 @@ index v1.2.3..v1.2.4 100644
   test("normal case", () => {
     expect(buildCommentBody(cmd, cmdArgs, diff)).toEqual(`
 <details>
-<summary><code>npm diff --diff=foo@1.2.3 --diff=foo@1.2.4</code></summary>
+<summary><code>npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2</code></summary>
 
 \`\`\`\`diff
 diff --git a/index.js b/index.js

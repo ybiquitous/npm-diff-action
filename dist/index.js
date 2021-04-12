@@ -31,7 +31,7 @@ const extractUpdateInfo = (
  */
 const npmDiffCommand = ({ name, from, to }) => [
   "npm",
-  ["diff", `--diff=${name}@${from}`, `--diff=${name}@${to}`],
+  ["diff", `--diff=${name}@${from}`, `--diff=${name}@${to}`, "--diff-unified=2"],
 ];
 
 /**
