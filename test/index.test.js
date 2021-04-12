@@ -1,3 +1,4 @@
+const { RequestError } = require("@octokit/request-error");
 const {
   extractUpdateInfo,
   npmDiffCommand,
@@ -83,8 +84,8 @@ Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-ac
 
 // eslint-disable-next-line max-lines-per-function
 describe("postComment()", () => {
-  // eslint-disable-next-line prefer-promise-reject-errors
-  const errorResponse = (code, message) => Promise.reject({ code, message });
+  const errorResponse = (status, message) =>
+    Promise.reject(new RequestError(message, status, { request: { url: "", headers: {} } }));
 
   test("normal case", async () => {
     const createComment = jest.fn();
@@ -110,7 +111,7 @@ describe("postComment()", () => {
   test("too long body", async () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(
-      errorResponse("unprocessable", "Body is too long (maximum is 4 characters)")
+      errorResponse(422, "Body is too long (maximum is 4 characters)")
     );
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
@@ -141,7 +142,7 @@ describe("postComment()", () => {
 
   test("unexpected error", () => {
     const createComment = jest.fn();
-    createComment.mockReturnValueOnce(errorResponse("error", "Foo"));
+    createComment.mockReturnValueOnce(errorResponse(500, "Foo"));
 
     return expect(
       postComment("test body", {
@@ -149,6 +150,6 @@ describe("postComment()", () => {
         repository: "foo/bar",
         number: "123",
       })
-    ).rejects.toEqual({ code: "error", message: "Foo" });
+    ).rejects.toBeInstanceOf(RequestError);
   });
 });
