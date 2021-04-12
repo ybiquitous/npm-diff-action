@@ -42,7 +42,12 @@ describe("extractUpdateInfo()", () => {
 describe("npmDiffCommand()", () => {
   test("success", () => {
     const [cmd, args] = npmDiffCommand({ name: "typescript", from: "4.2.3", to: "4.2.4" });
-    expect(execFileSync(cmd, args, { encoding: "utf8" })).toMatchSnapshot();
+    expect(execFileSync(cmd, args, { encoding: "utf8" }))
+      .toContain(`diff --git a/package.json b/package.json
+index v4.2.3..v4.2.4 100644
+--- a/package.json
++++ b/package.json
+@@ -3,5 +3,5 @@`);
   });
 
   test("failure", () => {
