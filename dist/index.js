@@ -7,6 +7,7 @@
 const core = __nccwpck_require__(186);
 const { exec } = __nccwpck_require__(514);
 const github = __nccwpck_require__(438);
+const { RequestError } = __nccwpck_require__(537);
 
 /** @typedef {{ name: string, from: string, to: string }} UpdateInfo */
 
@@ -71,20 +72,16 @@ Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-ac
 };
 
 /**
- * @param {any} error
+ * @param {RequestError} error
  */
 const maxCharsFromError = (error) => {
-  if (
-    typeof error === "object" &&
-    error !== null &&
-    error.code === "unprocessable" &&
-    typeof error.message === "string"
-  ) {
+  if (error.status === 422) {
+    // unprocessable
     const matched = error.message.match(
       /Body is too long \(maximum is (?<limit>\d+) characters\)/u
     );
-    if (matched != null) {
-      return Number(matched.groups.limit);
+    if (matched != null && matched.groups != null) {
+      return Number(matched.groups["limit"]); // eslint-disable-line dot-notation -- Prevent TS4111
     }
   }
   return null;
@@ -118,11 +115,13 @@ const postComment = async (
     await callApi(body);
     return;
   } catch (error) {
-    // NOTE: Retry the API call when the body is too long.
-    const limit = maxCharsFromError(error);
-    if (typeof limit === "number") {
-      await callApi(body.slice(0, limit));
-      return;
+    if (error instanceof RequestError) {
+      // NOTE: Retry the API call when the body is too long.
+      const limit = maxCharsFromError(error);
+      if (typeof limit === "number") {
+        await callApi(body.slice(0, limit));
+        return;
+      }
     }
     throw error;
   }
