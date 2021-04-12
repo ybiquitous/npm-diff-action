@@ -71,9 +71,31 @@ Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-ac
 };
 
 /**
- * @param {string} body
+ * @param {any} error
  */
-const postComment = (
+const maxCharsFromError = (error) => {
+  if (
+    typeof error === "object" &&
+    error !== null &&
+    error.code === "unprocessable" &&
+    typeof error.message === "string"
+  ) {
+    const matched = error.message.match(
+      /Body is too long \(maximum is (?<limit>\d+) characters\)/u
+    );
+    if (matched != null) {
+      return Number(matched.groups.limit);
+    }
+  }
+  return null;
+};
+
+/**
+ * @param {string} body
+ * @param {{ client: ReturnType<github.getOctokit>, repository: string, number: string }} options
+ */
+// eslint-disable-next-line max-statements
+const postComment = async (
   body,
   { client, repository, number } = {
     client: github.getOctokit(core.getInput("token")),
@@ -85,12 +107,25 @@ const postComment = (
   if (owner == null || repo == null) {
     throw new Error(`"${repository}" is an invalid repository`);
   }
-  return client.issues.createComment({
-    owner,
-    repo,
-    body,
-    issue_number: Number(number),
-  });
+  const callApi = (/** @type {string} */ commentBody) =>
+    client.issues.createComment({
+      owner,
+      repo,
+      issue_number: Number(number),
+      body: commentBody,
+    });
+  try {
+    await callApi(body);
+    return;
+  } catch (error) {
+    // NOTE: Retry the API call when the body is too long.
+    const limit = maxCharsFromError(error);
+    if (typeof limit === "number") {
+      await callApi(body.slice(0, limit));
+      return;
+    }
+    throw error;
+  }
 };
 
 const run = async () => {

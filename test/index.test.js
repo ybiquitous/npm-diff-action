@@ -81,19 +81,22 @@ Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-ac
   });
 });
 
+// eslint-disable-next-line max-lines-per-function
 describe("postComment()", () => {
+  // eslint-disable-next-line prefer-promise-reject-errors
+  const errorResponse = (code, message) => Promise.reject({ code, message });
+
   test("normal case", async () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
-    const result = await postComment("test body", {
+    await postComment("test body", {
       client: { issues: { createComment } },
       repository: "foo/bar",
       number: "123",
     });
-    expect(result).toEqual("OK");
 
-    expect(createComment.mock.calls.length).toEqual(1);
+    expect(createComment.mock.calls).toHaveLength(1);
     expect(createComment.mock.calls[0]).toEqual([
       {
         owner: "foo",
@@ -102,5 +105,50 @@ describe("postComment()", () => {
         issue_number: 123,
       },
     ]);
+  });
+
+  test("too long body", async () => {
+    const createComment = jest.fn();
+    createComment.mockReturnValueOnce(
+      errorResponse("unprocessable", "Body is too long (maximum is 4 characters)")
+    );
+    createComment.mockReturnValueOnce(Promise.resolve("OK"));
+
+    await postComment("test body", {
+      client: { issues: { createComment } },
+      repository: "foo/bar",
+      number: "123",
+    });
+
+    expect(createComment.mock.calls).toHaveLength(2);
+    expect(createComment.mock.calls[0]).toEqual([
+      {
+        owner: "foo",
+        repo: "bar",
+        body: "test body",
+        issue_number: 123,
+      },
+    ]);
+    expect(createComment.mock.calls[1]).toEqual([
+      {
+        owner: "foo",
+        repo: "bar",
+        body: "test",
+        issue_number: 123,
+      },
+    ]);
+  });
+
+  test("unexpected error", () => {
+    const createComment = jest.fn();
+    createComment.mockReturnValueOnce(errorResponse("error", "Foo"));
+
+    return expect(
+      postComment("test body", {
+        client: { issues: { createComment } },
+        repository: "foo/bar",
+        number: "123",
+      })
+    ).rejects.toEqual({ code: "error", message: "Foo" });
   });
 });
