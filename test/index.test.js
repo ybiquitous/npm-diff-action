@@ -109,31 +109,43 @@ describe("postComment()", () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
-    await postComment("test body", {
+    await postComment("cmd", ["arg"], "some diff", {
       client: { issues: { createComment } },
       repository: "foo/bar",
       number: "123",
     });
 
     expect(createComment.mock.calls).toHaveLength(1);
-    expect(createComment.mock.calls[0]).toEqual([
-      {
-        owner: "foo",
-        repo: "bar",
-        body: "test body",
-        issue_number: 123,
-      },
-    ]);
+    expect(createComment.mock.calls[0]).toMatchInlineSnapshot(
+      [
+        {
+          owner: "foo",
+          repo: "bar",
+          body: expect.any(String),
+          issue_number: 123,
+        },
+      ],
+      `
+      Array [
+        Object {
+          "body": Any<String>,
+          "issue_number": 123,
+          "owner": "foo",
+          "repo": "bar",
+        },
+      ]
+    `
+    );
   });
 
   test("too long body", async () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(
-      errorResponse(422, "Body is too long (maximum is 4 characters)")
+      errorResponse(422, "Body is too long (maximum is 1000 characters)")
     );
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
-    await postComment("test body", {
+    await postComment("cmd", ["arg"], "diff-".repeat(1000), {
       client: { issues: { createComment } },
       repository: "foo/bar",
       number: "123",
@@ -144,18 +156,20 @@ describe("postComment()", () => {
       {
         owner: "foo",
         repo: "bar",
-        body: "test body",
         issue_number: 123,
+        body: expect.any(String),
       },
     ]);
     expect(createComment.mock.calls[1]).toEqual([
       {
         owner: "foo",
         repo: "bar",
-        body: "test",
         issue_number: 123,
+        body: expect.any(String),
       },
     ]);
+    expect(createComment.mock.calls[0][0].body).toMatchSnapshot();
+    expect(createComment.mock.calls[1][0].body).toMatchSnapshot();
   });
 
   test("unexpected error", () => {
@@ -163,7 +177,7 @@ describe("postComment()", () => {
     createComment.mockReturnValueOnce(errorResponse(500, "Foo"));
 
     return expect(
-      postComment("test body", {
+      postComment("cmd", ["arg"], "some diff", {
         client: { issues: { createComment } },
         repository: "foo/bar",
         number: "123",

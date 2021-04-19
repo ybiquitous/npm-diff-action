@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`postComment() too long body 1`] = `
+"
+<details>
+<summary><code>cmd arg</code></summary>
+
+\`\`\`\`diff
+diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
+\`\`\`\`
+
+</details>
+
+Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
+"
+`;
+
+exports[`postComment() too long body 2`] = `
+"
+<details>
+<summary><code>cmd arg</code></summary>
+
+\`\`\`\`diff
+diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
+\`\`\`\`
+
+</details>
+
+Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
+"
+`;
