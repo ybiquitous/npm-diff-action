@@ -87,22 +87,28 @@ const maxCharsFromError = (error) => {
 };
 
 /**
- * @param {string} body
+ * @param {string} cmd
+ * @param {string[]} cmdArgs
+ * @param {string} diff
  * @param {{ client: ReturnType<github.getOctokit>, repository: string, number: string }} options
  */
 // eslint-disable-next-line max-statements
 const postComment = async (
-  body,
+  cmd,
+  cmdArgs,
+  diff,
   { client, repository, number } = {
     client: github.getOctokit(core.getInput("token")),
     repository: core.getInput("repository"),
     number: core.getInput("pull_request_number"),
   }
+  // eslint-disable-next-line max-params
 ) => {
   const [owner, repo] = repository.split("/");
   if (owner == null || repo == null) {
     throw new Error(`"${repository}" is an invalid repository`);
   }
+
   const callApi = (/** @type {string} */ commentBody) =>
     client.issues.createComment({
       owner,
@@ -110,15 +116,18 @@ const postComment = async (
       issue_number: Number(number),
       body: commentBody,
     });
+
   try {
-    await callApi(body);
+    await callApi(buildCommentBody(cmd, cmdArgs, diff));
     return;
   } catch (error) {
     if (error instanceof RequestError) {
-      // NOTE: Retry the API call when the body is too long.
-      const chars = maxCharsFromError(error);
-      if (typeof chars === "number") {
-        await callApi(body.slice(0, chars));
+      const maxChars = maxCharsFromError(error);
+      if (typeof maxChars === "number") {
+        core.info("Retring the API call because the request body is too long...");
+        const bufferChars = 500;
+        const body = buildCommentBody(cmd, cmdArgs, diff.slice(0, maxChars - bufferChars));
+        await callApi(body);
         return;
       }
     }
@@ -136,8 +145,7 @@ const run = async () => {
     const info = extractUpdateInfo();
     const [cmd, cmdArgs] = npmDiffCommand(info);
     const diff = await runCommand(cmd, cmdArgs);
-    const body = buildCommentBody(cmd, cmdArgs, diff);
-    await postComment(body);
+    await postComment(cmd, cmdArgs, diff);
   } catch (error) {
     core.setFailed(error.message);
   }
