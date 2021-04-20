@@ -54,8 +54,10 @@ const runCommand = async (cmd, cmdArgs) => {
  * @param {string} cmd
  * @param {string[]} cmdArgs
  * @param {string} diff
+ * @param {boolean} truncated
  */
-const buildCommentBody = (cmd, cmdArgs, diff) => {
+// eslint-disable-next-line max-params
+const buildCommentBody = (cmd, cmdArgs, diff, truncated = false) => {
   const cmdLine = [cmd, ...cmdArgs].join(" ");
   return `
 <details>
@@ -64,7 +66,7 @@ const buildCommentBody = (cmd, cmdArgs, diff) => {
 \`\`\`\`diff
 ${diff.trim()}
 \`\`\`\`
-
+${truncated ? "\n_(too long so truncated)_\n" : ""}
 </details>
 
 Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
@@ -126,7 +128,7 @@ const postComment = async (
       if (typeof maxChars === "number") {
         core.info("Retring the API call because the request body is too long...");
         const bufferChars = 500;
-        const body = buildCommentBody(cmd, cmdArgs, diff.slice(0, maxChars - bufferChars));
+        const body = buildCommentBody(cmd, cmdArgs, diff.slice(0, maxChars - bufferChars), true);
         await callApi(body);
         return;
       }
@@ -137,15 +139,16 @@ const postComment = async (
 
 const run = async () => {
   try {
-    await exec("npm", ["--version"]);
+    await core.group("Show npm version", () => exec("npm", ["--version"]));
 
-    // TODO: `npm diff` is available since npm 7.5.0. In future Node versions, this code should be removed.
-    await exec("sudo", ["npm", "install", "--global", "npm@latest"]);
+    await core.group("Install the latest npm", () =>
+      exec("sudo", ["npm", "install", "--global", "npm@latest"])
+    );
 
     const info = extractUpdateInfo();
     const [cmd, cmdArgs] = npmDiffCommand(info);
-    const diff = await runCommand(cmd, cmdArgs);
-    await postComment(cmd, cmdArgs, diff);
+    const diff = await core.group("Run npm diff", () => runCommand(cmd, cmdArgs));
+    await core.group("Post comment", () => postComment(cmd, cmdArgs, diff));
   } catch (error) {
     core.setFailed(error.message);
   }
