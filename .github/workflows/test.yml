@@ -9,14 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: ["12", "14"]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
+      - run: nvm install && echo "${NVM_BIN}" >> $GITHUB_PATH
+        shell: bash --login {0}
       - run: npm --global install npm@latest
       - run: npm ci
       - run: npm run lint
