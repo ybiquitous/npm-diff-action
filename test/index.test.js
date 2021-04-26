@@ -8,8 +8,10 @@ const {
 } = require("../lib/index");
 
 describe("extractUpdateInfo()", () => {
+  const REGEX = /[Bb]ump (?<name>\S+) from (?<from>\S+) to (?<to>\S+)/u;
+
   test("matched", () => {
-    expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4")).toEqual({
+    expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -17,7 +19,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("matched with prefix", () => {
-    expect(extractUpdateInfo("chore(deps): bump foo from 1.2.3 to 1.2.4")).toEqual({
+    expect(extractUpdateInfo("chore(deps): bump foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -25,7 +27,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("matched with suffix", () => {
-    expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4 in /app")).toEqual({
+    expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4 in /app", REGEX)).toEqual({
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -33,9 +35,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("unmatched", () => {
-    expect(() => {
-      extractUpdateInfo("Bump foo from 1.2.3 to");
-    }).toThrow('"[bB]ump (\\S+) from (\\S+) to (\\S+)" does not match "Bump foo from 1.2.3 to"');
+    expect(extractUpdateInfo("Bump foo from 1.2.3 to", REGEX)).toBeNull();
   });
 });
 
