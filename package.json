@@ -45,7 +45,7 @@
     "@octokit/request-error": "^2.0.5"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.3",
+    "@vercel/ncc": "^0.28.4",
     "eslint": "^7.25.0",
     "eslint-config-ybiquitous": "^13.2.0",
     "eslint-plugin-jest": "^24.3.6",
