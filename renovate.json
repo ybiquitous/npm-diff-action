@@ -1,4 +1,6 @@
 {
   "extends": ["config:base", "schedule:monthly", ":preserveSemverRanges"],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "commitMessageExtra": "{{currentVersion}} to {{newVersion}}",
+  "commitMessageTopic": "{{depName}}"
 }
