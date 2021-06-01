@@ -1,5 +1,11 @@
 const { execFileSync } = require("child_process");
+const fs = require("fs");
+const path = require("path");
 const { RequestError } = require("@octokit/request-error");
+
+// eslint-disable-next-line import/no-extraneous-dependencies, node/no-extraneous-require -- Avoid increasing dependencies.
+const yaml = require("js-yaml");
+
 const {
   extractUpdateInfo,
   npmDiffCommand,
@@ -7,8 +13,10 @@ const {
   postComment,
 } = require("../lib/index");
 
+// eslint-disable-next-line max-lines-per-function
 describe("extractUpdateInfo()", () => {
-  const REGEX = /[Bb]ump (?<name>\S+) from (?<from>\S+) to (?<to>\S+)/u;
+  const REGEX = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "..", "action.yml"), "utf8"))
+    .inputs.extract_regexp.default;
 
   test("matched", () => {
     expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
@@ -28,6 +36,30 @@ describe("extractUpdateInfo()", () => {
 
   test("matched with suffix", () => {
     expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4 in /app", REGEX)).toEqual({
+      name: "foo",
+      from: "1.2.3",
+      to: "1.2.4",
+    });
+  });
+
+  test("matched with another action", () => {
+    expect(extractUpdateInfo("update foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
+      name: "foo",
+      from: "1.2.3",
+      to: "1.2.4",
+    });
+  });
+
+  test("matched without 'from'", () => {
+    expect(extractUpdateInfo("bump foo 1.2.3 to 1.2.4", REGEX)).toEqual({
+      name: "foo",
+      from: "1.2.3",
+      to: "1.2.4",
+    });
+  });
+
+  test("matched with 'v' prefixes", () => {
+    expect(extractUpdateInfo("bump foo from v1.2.3 to v1.2.4", REGEX)).toEqual({
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
