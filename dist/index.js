@@ -7486,7 +7486,7 @@ const postComment = async (
   }
 
   const callApi = (/** @type {string} */ commentBody) =>
-    client.issues.createComment({
+    client.rest.issues.createComment({
       owner,
       repo,
       issue_number: Number(number),
