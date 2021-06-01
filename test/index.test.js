@@ -1,21 +1,16 @@
-const { execFileSync } = require("child_process");
-const fs = require("fs");
-const path = require("path");
-const { RequestError } = require("@octokit/request-error");
+import { execFileSync } from "child_process";
+import { readFileSync } from "fs";
+import { jest } from "@jest/globals"; // eslint-disable-line import/no-extraneous-dependencies
+import { RequestError } from "@octokit/request-error";
 
-// eslint-disable-next-line import/no-extraneous-dependencies, node/no-extraneous-require -- Avoid increasing dependencies.
-const yaml = require("js-yaml");
+// eslint-disable-next-line import/no-extraneous-dependencies -- Avoid increasing dependencies.
+import yaml from "js-yaml";
 
-const {
-  extractUpdateInfo,
-  npmDiffCommand,
-  buildCommentBody,
-  postComment,
-} = require("../lib/index");
+import { extractUpdateInfo, npmDiffCommand, buildCommentBody, postComment } from "../lib/index.js";
 
 // eslint-disable-next-line max-lines-per-function
 describe("extractUpdateInfo()", () => {
-  const REGEX = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "..", "action.yml"), "utf8"))
+  const REGEX = yaml.safeLoad(readFileSync(new URL("../action.yml", import.meta.url), "utf8"))
     .inputs.extract_regexp.default;
 
   test("matched", () => {

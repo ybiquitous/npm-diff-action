@@ -13,6 +13,7 @@
     "diff",
     "dependency"
   ],
+  "type": "module",
   "main": "lib/index.js",
   "engines": {
     "node": ">=12",
@@ -20,9 +21,9 @@
   },
   "scripts": {
     "prepare": "husky install && ncc build lib/index.js -o dist",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "npm run test -- --watch",
+    "test:coverage": "npm run test -- --coverage",
     "lint": "npm-run-all --print-label --parallel lint:* prettier:check",
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
@@ -47,7 +48,7 @@
   "devDependencies": {
     "@vercel/ncc": "^0.28.4",
     "eslint": "^7.25.0",
-    "eslint-config-ybiquitous": "^13.2.0",
+    "eslint-config-ybiquitous": "^14.0.1",
     "eslint-plugin-jest": "^24.3.6",
     "jest": "^27.0.0",
     "remark-preset-ybiquitous": "^0.0.4",
