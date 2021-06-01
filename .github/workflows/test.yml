@@ -15,6 +15,7 @@ jobs:
         shell: bash --login {0}
       - run: npm --global install npm@latest
       - run: npm ci
+      - run: git diff --exit-code # check dist/
       - run: npm run lint
       - run: npm test
       - run: npm run release:dry-run
