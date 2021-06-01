@@ -137,7 +137,7 @@ describe("postComment()", () => {
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
     await postComment("cmd", ["arg"], "some diff", {
-      client: { issues: { createComment } },
+      client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
       number: "123",
     });
@@ -173,7 +173,7 @@ describe("postComment()", () => {
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
     await postComment("cmd", ["arg"], "diff-".repeat(1000), {
-      client: { issues: { createComment } },
+      client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
       number: "123",
     });
@@ -205,7 +205,7 @@ describe("postComment()", () => {
 
     return expect(
       postComment("cmd", ["arg"], "some diff", {
-        client: { issues: { createComment } },
+        client: { rest: { issues: { createComment } } },
         repository: "foo/bar",
         number: "123",
       })
