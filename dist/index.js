@@ -13,11 +13,11 @@ const { RequestError } = __nccwpck_require__(537);
 
 /**
  * @param {string} text
- * @param {RegExp} pattern
+ * @param {string} pattern
  * @returns {UpdateInfo | null}
  */
 const extractUpdateInfo = (text, pattern) => {
-  const matched = pattern.exec(text);
+  const matched = new RegExp(pattern, "iu").exec(text);
   if (matched == null || matched.groups == null) {
     return null;
   }
@@ -149,13 +149,10 @@ const run = async () => {
   );
 
   const pullTitle = core.getInput("pull_request_title");
-  const pattern = new RegExp(
-    core.getInput("extract_regexp") || "[bB]ump (?<name>\\S+) from (?<from>\\S+) to (?<to>\\S+)",
-    "u"
-  );
+  const pattern = core.getInput("extract_regexp");
   const info = extractUpdateInfo(pullTitle, pattern);
   if (info == null) {
-    core.info(`'${pullTitle}' fails to match '${pattern.source}'`);
+    core.info(`'${pullTitle}' fails to match '${pattern}'`);
     return;
   }
 

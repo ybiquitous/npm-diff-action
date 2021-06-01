@@ -20,6 +20,8 @@ inputs:
   extract_regexp:
     description: "Extract regexp pattern"
     required: false
+    default: |-
+      (?:Bump|Update) (?<name>\S+) (?:from )?v?(?<from>\S+) to v?(?<to>\S+)
 runs:
   using: "node12"
   main: "dist/index.js"
