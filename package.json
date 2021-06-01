@@ -47,7 +47,7 @@
   "devDependencies": {
     "@vercel/ncc": "^0.28.4",
     "eslint": "^7.25.0",
-    "eslint-config-ybiquitous": "^13.2.0",
+    "eslint-config-ybiquitous": "^14.0.0",
     "eslint-plugin-jest": "^24.3.6",
     "jest": "^27.0.0",
     "remark-preset-ybiquitous": "^0.0.4",
