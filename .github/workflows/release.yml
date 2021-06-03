@@ -13,7 +13,7 @@ jobs:
       - run: npm ci
       - run: git config --local user.name '${{ github.actor }}'
       - run: git config --local user.email '${{ github.actor }}@users.noreply.github.com'
-      - run: npm run release -- --first-release
+      - run: npm run release
       - run: echo "::set-output name=tag::$(git describe --abbrev=0)"
         id: get_tag
       - run: git push --follow-tags
