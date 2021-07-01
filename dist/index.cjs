@@ -7540,15 +7540,8 @@ const npmDiffCommand = ({ name, from, to }) => [
  * @param {string[]} cmdArgs
  */
 const runCommand = async (cmd, cmdArgs) => {
-  let out = "";
-  await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.exec)(cmd, cmdArgs, {
-    listeners: {
-      stdout: (data) => {
-        out += data.toString();
-      },
-    },
-  });
-  return out;
+  const { stdout } = await (0,_actions_exec__WEBPACK_IMPORTED_MODULE_1__.getExecOutput)(cmd, cmdArgs);
+  return stdout;
 };
 
 /**
