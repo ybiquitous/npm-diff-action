@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: ybiquitous/npm-diff-action@main
+      - uses: ybiquitous/npm-diff-action@v1
 ```
 
 See also an [example](https://github.com/ybiquitous/npm-diff-action/pull/7#issuecomment-813310581).
