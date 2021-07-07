@@ -15,6 +15,7 @@ on:
 
 jobs:
   post-comment:
+    if: ${{ startsWith(github.head_ref, 'dependabot/npm_and_yarn/') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
