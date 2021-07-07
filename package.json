@@ -31,6 +31,7 @@
     "lint:md": "remark . --frail",
     "lint:md:fix": "remark . --output",
     "lint:types": "tsc --noEmit",
+    "lint:types:watch": "npm run lint:types -- --watch",
     "prettier": "prettier .",
     "prettier:check": "npm run prettier -- --check",
     "prettier:write": "npm run prettier -- --write",
@@ -92,7 +93,8 @@
     "reportUnusedDisableDirectives": true,
     "ignorePatterns": [
       "coverage",
-      "dist"
+      "dist",
+      "tmp"
     ],
     "rules": {
       "dot-notation": [
