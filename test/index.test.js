@@ -11,7 +11,7 @@ import {
   npmDiffCommand,
   buildCommentBody,
   postComment,
-  getPackageSize,
+  getPackageInfo,
 } from "../lib/index.js";
 
 // eslint-disable-next-line max-lines-per-function
@@ -105,10 +105,13 @@ index v1.2.3..v1.2.4 100644
  			2,
  			'never',
 `;
-  const packageSize = { from: 50, to: 100 };
+  const packageInfo = Object.freeze({
+    from: { fileCount: 23, size: 1089 },
+    to: { fileCount: 17, size: 956 },
+  });
 
   test("normal case", () => {
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageSize })).toEqual(`
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo })).toEqual(`
 <details>
 <summary><code>npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2</code></summary>
 
@@ -129,7 +132,8 @@ index v1.2.3..v1.2.4 100644
 
 </details>
 
-Size: 50 B → **100 B**
+- Size: 1.1 KB → **956 B**
+- Files: 23 → **17**
 
 Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
 `);
@@ -141,6 +145,11 @@ describe("postComment()", () => {
   const errorResponse = (status, message) =>
     Promise.reject(new RequestError(message, status, { request: { url: "", headers: {} } }));
 
+  const packageInfo = Object.freeze({
+    from: { fileCount: 23, size: 1089 },
+    to: { fileCount: 17, size: 956 },
+  });
+
   test("normal case", async () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
@@ -149,7 +158,7 @@ describe("postComment()", () => {
       cmd: "cmd",
       cmdArgs: ["arg"],
       diff: "some diff",
-      packageSize: { from: 50, to: 100 },
+      packageInfo,
       client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
       pullNumber: "123",
@@ -189,7 +198,7 @@ describe("postComment()", () => {
       cmd: "cmd",
       cmdArgs: ["arg"],
       diff: "diff-".repeat(1000),
-      packageSize: { from: 50, to: 100 },
+      packageInfo,
       client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
       pullNumber: "123",
@@ -225,7 +234,7 @@ describe("postComment()", () => {
         cmd: "cmd",
         cmdArgs: ["arg"],
         diff: "some diff",
-        packageSize: { from: 50, to: 100 },
+        packageInfo,
         client: { rest: { issues: { createComment } } },
         repository: "foo/bar",
         pullNumber: "123",
@@ -234,12 +243,17 @@ describe("postComment()", () => {
   });
 });
 
-describe("getPackageSize()", () => {
+describe("getPackageInfo()", () => {
   test("success", async () => {
-    await expect(getPackageSize("npm", "7.20.0")).resolves.toEqual(12195007);
+    await expect(getPackageInfo("npm", "7.20.0")).resolves.toEqual({
+      fileCount: 2469,
+      size: 12195007,
+    });
   });
 
   test("failure", async () => {
-    await expect(getPackageSize("npm", "7.20.100")).rejects.toThrow(new Error("No package size"));
+    await expect(getPackageInfo("npm", "7.20.100")).rejects.toThrow(
+      new Error("No package info of npm@7.20.100")
+    );
   });
 });
