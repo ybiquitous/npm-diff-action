@@ -2,5 +2,3 @@
 . "$(dirname "$0")/_/husky.sh"
 
 npx --no-install lint-staged
-
-npm run prepare && git add --force dist/

@@ -16,15 +16,16 @@
   "type": "module",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=12",
+    "node": ">=16",
     "npm": ">=7.5.0"
   },
   "scripts": {
-    "prepare": "husky install && npm run build",
-    "build": "ncc build lib/index.js --out dist && mv dist/index.js dist/index.cjs",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "prepare": "husky install",
+    "build": "ncc build lib/index.js --out dist",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest && npm run test:docker",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
+    "test:docker": "DOCKER_BUILDKIT=1 docker build -t npm-diff-action:dev . && docker run --rm npm-diff-action:dev",
     "lint": "npm-run-all --print-label --parallel lint:* prettier:check",
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
@@ -48,7 +49,7 @@
     "@octokit/request-error": "^2.1.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.6",
+    "@vercel/ncc": "^0.29.0",
     "eslint": "^7.32.0",
     "eslint-config-ybiquitous": "^14.0.1",
     "eslint-plugin-jest": "^24.4.0",

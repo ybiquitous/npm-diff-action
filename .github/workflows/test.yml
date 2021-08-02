@@ -11,15 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: echo ::set-output name=nvmrc::$(cat .nvmrc)
-        id: nvm
       - uses: actions/setup-node@v2
         with:
-          node-version: "${{ steps.nvm.outputs.nvmrc }}"
+          node-version: "16"
           cache: npm
       - run: npm --global install npm@latest
       - run: npm ci
-      - run: git diff --exit-code # check dist/
       - run: npm run lint
       - run: npm test
       - run: npm run release:dry-run
