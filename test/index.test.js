@@ -6,7 +6,13 @@ import { RequestError } from "@octokit/request-error";
 // eslint-disable-next-line import/no-extraneous-dependencies -- Avoid increasing dependencies.
 import yaml from "js-yaml";
 
-import { extractUpdateInfo, npmDiffCommand, buildCommentBody, postComment } from "../lib/index.js";
+import {
+  extractUpdateInfo,
+  npmDiffCommand,
+  buildCommentBody,
+  postComment,
+  getPackageInfo,
+} from "../lib/index.js";
 
 // eslint-disable-next-line max-lines-per-function
 describe("extractUpdateInfo()", () => {
@@ -99,9 +105,13 @@ index v1.2.3..v1.2.4 100644
  			2,
  			'never',
 `;
+  const packageInfo = Object.freeze({
+    from: { fileCount: 23, size: 1089 },
+    to: { fileCount: 17, size: 956 },
+  });
 
   test("normal case", () => {
-    expect(buildCommentBody(cmd, cmdArgs, diff)).toEqual(`
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo })).toEqual(`
 <details>
 <summary><code>npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2</code></summary>
 
@@ -122,6 +132,9 @@ index v1.2.3..v1.2.4 100644
 
 </details>
 
+- Size: 1.1 KB → **956 B**
+- Files: 23 → **17**
+
 Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
 `);
   });
@@ -132,14 +145,23 @@ describe("postComment()", () => {
   const errorResponse = (status, message) =>
     Promise.reject(new RequestError(message, status, { request: { url: "", headers: {} } }));
 
+  const packageInfo = Object.freeze({
+    from: { fileCount: 23, size: 1089 },
+    to: { fileCount: 17, size: 956 },
+  });
+
   test("normal case", async () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
-    await postComment("cmd", ["arg"], "some diff", {
+    await postComment({
+      cmd: "cmd",
+      cmdArgs: ["arg"],
+      diff: "some diff",
+      packageInfo,
       client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
-      number: "123",
+      pullNumber: "123",
     });
 
     expect(createComment.mock.calls).toHaveLength(1);
@@ -172,10 +194,14 @@ describe("postComment()", () => {
     );
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
-    await postComment("cmd", ["arg"], "diff-".repeat(1000), {
+    await postComment({
+      cmd: "cmd",
+      cmdArgs: ["arg"],
+      diff: "diff-".repeat(1000),
+      packageInfo,
       client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
-      number: "123",
+      pullNumber: "123",
     });
 
     expect(createComment.mock.calls).toHaveLength(2);
@@ -204,11 +230,30 @@ describe("postComment()", () => {
     createComment.mockReturnValueOnce(errorResponse(500, "Foo"));
 
     return expect(
-      postComment("cmd", ["arg"], "some diff", {
+      postComment({
+        cmd: "cmd",
+        cmdArgs: ["arg"],
+        diff: "some diff",
+        packageInfo,
         client: { rest: { issues: { createComment } } },
         repository: "foo/bar",
-        number: "123",
+        pullNumber: "123",
       })
     ).rejects.toBeInstanceOf(RequestError);
+  });
+});
+
+describe("getPackageInfo()", () => {
+  test("success", async () => {
+    await expect(getPackageInfo("npm", "7.20.0")).resolves.toEqual({
+      fileCount: 2469,
+      size: 12195007,
+    });
+  });
+
+  test("failure", async () => {
+    await expect(getPackageInfo("npm", "7.20.100")).rejects.toThrow(
+      new Error("No package info of npm@7.20.100")
+    );
   });
 });
