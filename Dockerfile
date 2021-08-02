@@ -1,12 +1,7 @@
-FROM node:16-alpine as build
+FROM node:16-alpine
 
 COPY package*.json /
 COPY lib/* /lib/
-RUN npm ci --ignore-scripts && \
-    npm run build
+RUN npm ci --ignore-scripts --production
 
-FROM node:16-alpine
-
-COPY --from=build dist/* /
-
-ENTRYPOINT ["node", "/index.js"]
+ENTRYPOINT ["node", "."]
