@@ -24,4 +24,4 @@ inputs:
       (?:Bump|Update) (?<name>\S+) (?:from )?v?(?<from>\S+) to v?(?<to>\S+)
 runs:
   using: "docker"
-  main: "Dockerfile"
+  image: "Dockerfile"
