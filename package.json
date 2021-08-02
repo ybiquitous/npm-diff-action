@@ -16,12 +16,12 @@
   "type": "module",
   "main": "lib/index.js",
   "engines": {
-    "node": ">=12",
+    "node": ">=16",
     "npm": ">=7.5.0"
   },
   "scripts": {
     "prepare": "husky install && npm run build",
-    "build": "ncc build lib/index.js --out dist && mv dist/index.js dist/index.cjs",
+    "build": "ncc build lib/index.js --out dist",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
@@ -48,7 +48,7 @@
     "@octokit/request-error": "^2.1.0"
   },
   "devDependencies": {
-    "@vercel/ncc": "^0.28.6",
+    "@vercel/ncc": "^0.29.0",
     "eslint": "^7.32.0",
     "eslint-config-ybiquitous": "^14.0.1",
     "eslint-plugin-jest": "^24.4.0",

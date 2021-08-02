@@ -23,5 +23,5 @@ inputs:
     default: |-
       (?:Bump|Update) (?<name>\S+) (?:from )?v?(?<from>\S+) to v?(?<to>\S+)
 runs:
-  using: "node12"
-  main: "dist/index.cjs"
+  using: "docker"
+  main: "Dockerfile"
