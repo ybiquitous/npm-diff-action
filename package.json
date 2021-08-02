@@ -22,9 +22,10 @@
   "scripts": {
     "prepare": "husky install",
     "build": "ncc build lib/index.js --out dist",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest && npm run test:docker",
     "test:watch": "npm run test -- --watch",
     "test:coverage": "npm run test -- --coverage",
+    "test:docker": "docker build -t npm-diff-action:dev . && docker run --rm npm-diff-action:dev",
     "lint": "npm-run-all --print-label --parallel lint:* prettier:check",
     "lint:js": "eslint .",
     "lint:js:fix": "npm run lint:js -- --fix",
