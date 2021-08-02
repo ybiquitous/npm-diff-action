@@ -89,6 +89,7 @@ index v4.2.3..v4.2.4 100644
   });
 });
 
+// eslint-disable-next-line max-lines-per-function
 describe("buildCommentBody()", () => {
   const [cmd, cmdArgs] = npmDiffCommand({ name: "foo", from: "1.2.3", to: "1.2.4" });
   const diff = `
@@ -107,7 +108,7 @@ index v1.2.3..v1.2.4 100644
 `;
   const packageInfo = Object.freeze({
     from: { fileCount: 23, size: 1089 },
-    to: { fileCount: 17, size: 956 },
+    to: { fileCount: 34, size: 956 },
   });
 
   test("normal case", () => {
@@ -132,11 +133,27 @@ index v1.2.3..v1.2.4 100644
 
 </details>
 
-- Size: 1.1 KB → **956 B**
-- Files: 23 → **17**
+- Size: 1.1 KB → **956 B** (-133 B)
+- Files: 23 → **34** (+11)
 
 Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
 `);
+  });
+
+  test("size diff", () => {
+    const fileCount = 1;
+    const info = (from, to) => ({ from: { fileCount, size: from }, to: { fileCount, size: to } });
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(2, 1) })).toContain("(-1 B)");
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 2) })).toContain("(+1 B)");
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 1) })).toContain("(±0 B)");
+  });
+
+  test("files diff", () => {
+    const size = 1;
+    const info = (from, to) => ({ from: { fileCount: from, size }, to: { fileCount: to, size } });
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(2, 1) })).toContain("(-1)");
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 2) })).toContain("(+1)");
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 1) })).toContain("(±0)");
   });
 });
 
@@ -147,7 +164,7 @@ describe("postComment()", () => {
 
   const packageInfo = Object.freeze({
     from: { fileCount: 23, size: 1089 },
-    to: { fileCount: 17, size: 956 },
+    to: { fileCount: 34, size: 956 },
   });
 
   test("normal case", async () => {
