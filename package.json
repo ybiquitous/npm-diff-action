@@ -20,7 +20,7 @@
     "npm": ">=7.5.0"
   },
   "scripts": {
-    "prepare": "husky install && npm run build",
+    "prepare": "husky install",
     "build": "ncc build lib/index.js --out dist",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "npm run test -- --watch",
