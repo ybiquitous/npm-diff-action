@@ -4,4 +4,4 @@ COPY package*.json /
 COPY lib/* /lib/
 RUN npm ci --ignore-scripts --production
 
-ENTRYPOINT ["node", "."]
+ENTRYPOINT ["node", "/lib/index.js"]
