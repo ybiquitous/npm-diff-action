@@ -25,7 +25,7 @@
     "test:coverage": "npm run test -- --coverage",
     "test:docker": "DOCKER_BUILDKIT=1 docker build -t npm-diff-action:dev . && docker run --rm npm-diff-action:dev && docker rmi npm-diff-action:dev",
     "lint": "npm-run-all --print-label --parallel lint:* prettier:check",
-    "lint:js": "eslint .",
+    "lint:js": "eslint --cache --ext=js,jsx,cjs,mjs,ts,tsx .",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:md": "remark . --frail",
     "lint:md:fix": "remark . --output",
@@ -55,7 +55,7 @@
     "ybiq": "^13.7.0"
   },
   "lint-staged": {
-    "*.{js,jsx,mjs,ts,tsx}": "eslint --fix",
+    "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
     "!(*.snap)": "prettier --write",
     "!(CHANGELOG).md": "remark --frail"
   },
@@ -88,12 +88,12 @@
       "ybiquitous/node",
       "plugin:jest/recommended"
     ],
-    "reportUnusedDisableDirectives": true,
     "ignorePatterns": [
       "coverage",
       "dist",
       "tmp"
     ],
+    "reportUnusedDisableDirectives": true,
     "rules": {
       "dot-notation": [
         "error",
