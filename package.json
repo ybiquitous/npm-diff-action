@@ -50,7 +50,7 @@
     "eslint": "^7.32.0",
     "eslint-config-ybiquitous": "^14.3.0",
     "eslint-plugin-jest": "^25.0.0",
-    "jest": "^27.2.4",
+    "jest": "^27.3.1",
     "remark-preset-ybiquitous": "^0.1.1",
     "ybiq": "^13.7.1"
   },
