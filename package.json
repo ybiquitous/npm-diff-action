@@ -47,8 +47,8 @@
     "@octokit/request-error": "^2.1.0"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-ybiquitous": "^14.3.0",
+    "eslint": "^8.6.0",
+    "eslint-config-ybiquitous": "^15.0.0",
     "eslint-plugin-jest": "^25.3.3",
     "jest": "^27.4.5",
     "remark-preset-ybiquitous": "^0.1.1",
