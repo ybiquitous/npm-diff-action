@@ -52,7 +52,7 @@
     "eslint-config-ybiquitous": "^15.0.0",
     "eslint-plugin-jest": "^25.3.3",
     "jest": "^27.4.5",
-    "remark-preset-ybiquitous": "^0.1.1",
+    "remark-preset-ybiquitous": "^0.1.2",
     "ybiq": "^14.0.1"
   },
   "lint-staged": {
