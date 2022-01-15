@@ -16,8 +16,8 @@ import {
 
 // eslint-disable-next-line max-lines-per-function
 describe("extractUpdateInfo()", () => {
-  const REGEX = yaml.safeLoad(readFileSync(new URL("../action.yml", import.meta.url), "utf8"))
-    .inputs.extract_regexp.default;
+  const REGEX = yaml.load(readFileSync(new URL("../action.yml", import.meta.url), "utf8")).inputs
+    .extract_regexp.default;
 
   test("matched", () => {
     expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
