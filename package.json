@@ -50,7 +50,7 @@
   "devDependencies": {
     "eslint": "^8.10.0",
     "eslint-config-ybiquitous": "^15.0.0",
-    "eslint-plugin-jest": "^26.0.0",
+    "eslint-plugin-jest": "^26.1.1",
     "jest": "^27.5.1",
     "remark-preset-ybiquitous": "^0.1.1",
     "ybiq": "^14.0.1"
