@@ -53,7 +53,7 @@
     "eslint-plugin-jest": "^26.1.1",
     "jest": "^27.5.1",
     "remark-preset-ybiquitous": "^0.1.1",
-    "ybiq": "^14.0.1"
+    "ybiq": "^14.1.0"
   },
   "lint-staged": {
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
