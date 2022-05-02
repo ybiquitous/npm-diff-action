@@ -15,8 +15,8 @@
   ],
   "type": "module",
   "engines": {
-    "node": ">=16",
-    "npm": ">=7.5.0"
+    "node": ">=18",
+    "npm": ">=8.6.0"
   },
   "scripts": {
     "prepare": "husky install",
