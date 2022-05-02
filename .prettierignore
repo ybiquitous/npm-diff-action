@@ -1,2 +1,6 @@
 coverage/
 dist/
+.node-version
+.nvmrc
+.prettierignore
+Dockerfile
