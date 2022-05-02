@@ -92,6 +92,7 @@ index v4.2.3..v4.2.4 100644
 // eslint-disable-next-line max-lines-per-function
 describe("buildCommentBody()", () => {
   const [cmd, cmdArgs] = npmDiffCommand({ name: "foo", from: "1.2.3", to: "1.2.4" });
+
   const diff = `
 diff --git a/index.js b/index.js
 index v1.2.3..v1.2.4 100644
@@ -106,13 +107,20 @@ index v1.2.3..v1.2.4 100644
  			2,
  			'never',
 `;
+
   const packageInfo = Object.freeze({
     from: { fileCount: 23, size: 1089 },
     to: { fileCount: 34, size: 956 },
   });
 
+  const versions = Object.freeze({
+    node: "18.0.0",
+    npm: "8.8.0",
+    self: "1.2.0",
+  });
+
   test("normal case", () => {
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo })).toEqual(`
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions })).toEqual(`
 <details>
 <summary><code>npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2</code></summary>
 
@@ -136,24 +144,36 @@ index v1.2.3..v1.2.4 100644
 - Size: 1.1 KB → **956 B** (-133 B)
 - Files: 23 → **34** (+11)
 
-Posted by [ybiquitous/npm-diff-action](https://github.com/ybiquitous/npm-diff-action)
+Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
 `);
   });
 
   test("size diff", () => {
     const fileCount = 1;
-    const info = (from, to) => ({ from: { fileCount, size: from }, to: { fileCount, size: to } });
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(2, 1) })).toContain("(-1 B)");
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 2) })).toContain("(+1 B)");
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 1) })).toContain("(±0 B)");
+    const args = (from, to) => ({
+      cmd,
+      cmdArgs,
+      diff,
+      versions,
+      packageInfo: { from: { fileCount, size: from }, to: { fileCount, size: to } },
+    });
+    expect(buildCommentBody(args(2, 1))).toContain("(-1 B)");
+    expect(buildCommentBody(args(1, 2))).toContain("(+1 B)");
+    expect(buildCommentBody(args(1, 1))).toContain("(±0 B)");
   });
 
   test("files diff", () => {
     const size = 1;
-    const info = (from, to) => ({ from: { fileCount: from, size }, to: { fileCount: to, size } });
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(2, 1) })).toContain("(-1)");
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 2) })).toContain("(+1)");
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo: info(1, 1) })).toContain("(±0)");
+    const args = (from, to) => ({
+      cmd,
+      cmdArgs,
+      diff,
+      versions,
+      packageInfo: { from: { fileCount: from, size }, to: { fileCount: to, size } },
+    });
+    expect(buildCommentBody(args(2, 1))).toContain("(-1)");
+    expect(buildCommentBody(args(1, 2))).toContain("(+1)");
+    expect(buildCommentBody(args(1, 1))).toContain("(±0)");
   });
 });
 
@@ -167,6 +187,12 @@ describe("postComment()", () => {
     to: { fileCount: 34, size: 956 },
   });
 
+  const versions = Object.freeze({
+    node: "18.0.0",
+    npm: "8.8.0",
+    self: "1.2.0",
+  });
+
   test("normal case", async () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
@@ -176,6 +202,7 @@ describe("postComment()", () => {
       cmdArgs: ["arg"],
       diff: "some diff",
       packageInfo,
+      versions,
       client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
       pullNumber: "123",
@@ -216,6 +243,7 @@ describe("postComment()", () => {
       cmdArgs: ["arg"],
       diff: "diff-".repeat(1000),
       packageInfo,
+      versions,
       client: { rest: { issues: { createComment } } },
       repository: "foo/bar",
       pullNumber: "123",
@@ -252,6 +280,7 @@ describe("postComment()", () => {
         cmdArgs: ["arg"],
         diff: "some diff",
         packageInfo,
+        versions,
         client: { rest: { issues: { createComment } } },
         repository: "foo/bar",
         pullNumber: "123",
