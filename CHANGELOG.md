@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.1](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.0...v1.3.1) (2022-05-31)
+
+### Bug Fixes
+
+- incorrect package version on posted comment ([#144](https://github.com/ybiquitous/npm-diff-action/issues/144)) ([ae97085](https://github.com/ybiquitous/npm-diff-action/commit/ae9708557c76112ca24c2d7b51ac6b9fb0d90ecd))
+
 ## [1.3.0](https://github.com/ybiquitous/npm-diff-action/compare/v1.2.0...v1.3.0) (2022-05-02)
 
 ### Features
