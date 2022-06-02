@@ -14,6 +14,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
+      - run: npm --global install npm@latest
       - run: npm ci
       - run: git config --local user.name '${{ github.actor }}'
       - run: git config --local user.email '${{ github.actor }}@users.noreply.github.com'
@@ -23,6 +24,10 @@ jobs:
       - run: git push --follow-tags
       - run: git tag --force --annotate --message 'Release v1' v1
       - run: git push --tags --force origin v1
-      - run: gh release create '${{ steps.get_tag.outputs.tag }}' --notes 'See the [changelog](https://github.com/${{ github.repository }}/blob/${{ steps.get_tag.outputs.tag }}/CHANGELOG.md) for more details.'
+      - run: |
+          gh release create "${TAG_NAME}" \
+            --generate-notes \
+            --notes "See the [changelog](https://github.com/${GITHUB_REPOSITORY}/blob/${TAG_NAME}/CHANGELOG.md) for more details."
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG_NAME: ${{ steps.get_tag.outputs.tag }}
