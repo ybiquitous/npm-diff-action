@@ -16,7 +16,7 @@
   "type": "module",
   "engines": {
     "node": "^16.15.0 || >=18",
-    "npm": ">=8.6.0"
+    "npm": ">=8.13.2"
   },
   "scripts": {
     "prepare": "husky install",
@@ -48,6 +48,7 @@
     "@octokit/request-error": "^2.1.0"
   },
   "devDependencies": {
+    "@tsconfig/node16-strictest-esm": "^1.0.3",
     "eslint": "^8.14.0",
     "eslint-config-ybiquitous": "^15.2.0",
     "eslint-plugin-jest": "^26.1.5",

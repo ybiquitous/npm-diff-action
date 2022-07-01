@@ -299,7 +299,7 @@ describe("getPackageInfo()", () => {
 
   test("failure", async () => {
     await expect(getPackageInfo("npm", "7.20.100")).rejects.toThrow(
-      new Error("No package info of npm@7.20.100")
+      /Failed to get package info of "npm@7\.20\.100" due to:/u
     );
   });
 });
