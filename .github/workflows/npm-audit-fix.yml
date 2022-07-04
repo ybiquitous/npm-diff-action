@@ -13,6 +13,6 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version-file: .node-version
-      - uses: ybiquitous/npm-audit-fix-action@fix-npm-version
+      - uses: ybiquitous/npm-audit-fix-action@retry-sudo
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
