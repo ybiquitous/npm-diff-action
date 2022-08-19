@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.3](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.2...v1.3.3) (2022-08-19)
+
+### Bug Fixes
+
+- **deps:** bump @octokit/request-error from 2.1.0 to 3.0.1 ([#156](https://github.com/ybiquitous/npm-diff-action/issues/156)) ([2a314cc](https://github.com/ybiquitous/npm-diff-action/commit/2a314ccf658c3bcf2ff9ce074e68603567e15f58))
+- replace `--production` with `--omit=dev` in Dockerfile ([#165](https://github.com/ybiquitous/npm-diff-action/issues/165)) ([582078b](https://github.com/ybiquitous/npm-diff-action/commit/582078b907a453caf9daeecabc2c5118da626f8c))
+
 ### [1.3.2](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.1...v1.3.2) (2022-07-01)
 
 ### Bug Fixes
