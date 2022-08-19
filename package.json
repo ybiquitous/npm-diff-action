@@ -34,7 +34,7 @@
     "lint:types:watch": "npm run lint:types -- --watch",
     "lint:styles": "npm run prettier -- --check",
     "lint:styles:fix": "npm run prettier -- --write",
-    "prettier": "prettier .",
+    "prettier": "prettier --cache .",
     "format": "npm-run-all --print-label --parallel lint:*:fix",
     "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
     "prerelease": "git switch main && git pull && npm ci && npm run clean && npm test && npm run clean",
@@ -54,11 +54,11 @@
     "eslint-plugin-jest": "^26.1.5",
     "jest": "^28.0.3",
     "remark-preset-ybiquitous": "^0.2.1",
-    "ybiq": "^15.0.0"
+    "ybiq": "^15.2.0"
   },
   "lint-staged": {
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
-    "!(*.snap)": "prettier --write",
+    "!(*.snap)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "standard-version": {
