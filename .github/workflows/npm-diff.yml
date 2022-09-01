@@ -8,8 +8,8 @@ jobs:
   post-comment:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@v3
       - uses: ./
