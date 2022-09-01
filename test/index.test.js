@@ -219,8 +219,8 @@ describe("postComment()", () => {
         },
       ],
       `
-      Array [
-        Object {
+      [
+        {
           "body": Any<String>,
           "issue_number": 123,
           "owner": "foo",
