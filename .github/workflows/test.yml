@@ -6,12 +6,13 @@ on:
   pull_request:
     branches: ["**"]
 
-env:
-  npm_config_engine_strict: true
-
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      npm_config_engine_strict: true
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -24,23 +25,4 @@ jobs:
       - run: npm run test:docker
 
   lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: "lts/*"
-          cache: npm
-      - run: npm --global install npm@latest
-      - run: npm ci
-      - run: npm run lint
-
-  commitlint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: wagoid/commitlint-github-action@v5
-        with:
-          configFile: package.json
+    uses: ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml@main
