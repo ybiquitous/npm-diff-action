@@ -14,7 +14,7 @@ on:
     types: [assigned]
 
 jobs:
-  post-comment:
+  npm-diff:
     if: ${{ startsWith(github.head_ref, 'dependabot/npm_and_yarn/') }}
     runs-on: ubuntu-latest
     permissions:
