@@ -1,5 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`postComment() normal case 1`] = `
+[
+  {
+    "body": "
+<details>
+<summary><code>cmd arg</code></summary>
+
+\`\`\`\`diff
+some diff
+\`\`\`\`
+
+</details>
+
+- Size: 1.1 KB → **956 B** (-133 B)
+- Files: 23 → **34** (+11)
+
+Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+",
+    "issue_number": 123,
+    "owner": "foo",
+    "repo": "bar",
+  },
+]
+`;
+
 exports[`postComment() too long body 1`] = `
 "
 <details>
