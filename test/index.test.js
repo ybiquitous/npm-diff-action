@@ -209,26 +209,7 @@ describe("postComment()", () => {
     });
 
     expect(createComment.mock.calls).toHaveLength(1);
-    expect(createComment.mock.calls[0]).toMatchInlineSnapshot(
-      [
-        {
-          owner: "foo",
-          repo: "bar",
-          body: expect.any(String),
-          issue_number: 123,
-        },
-      ],
-      `
-      [
-        {
-          "body": Any<String>,
-          "issue_number": 123,
-          "owner": "foo",
-          "repo": "bar",
-        },
-      ]
-    `
-    );
+    expect(createComment.mock.calls[0]).toMatchSnapshot();
   });
 
   test("too long body", async () => {
