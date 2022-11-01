@@ -46,7 +46,7 @@
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
     "@actions/github": "^5.1.1",
-    "@octokit/request-error": "^3.0.1"
+    "@octokit/request-error": "^3.0.2"
   },
   "devDependencies": {
     "@tsconfig/node16-strictest-esm": "^1.0.3",
