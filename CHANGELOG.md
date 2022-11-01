@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.3.5](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.4...v1.3.5) (2022-11-01)
+
+### Bug Fixes
+
+- **deps:** bump @actions/core from 1.9.1 to 1.10.0 ([#179](https://github.com/ybiquitous/npm-diff-action/issues/179)) ([6d5c639](https://github.com/ybiquitous/npm-diff-action/commit/6d5c63919fafedec91ccfe2cadf6e68ce19efc55))
+- **deps:** bump @actions/github from 5.0.3 to 5.1.1 ([#178](https://github.com/ybiquitous/npm-diff-action/issues/178)) ([3517140](https://github.com/ybiquitous/npm-diff-action/commit/3517140c900df3adc41d02e77317e63678f8e24e))
+- **deps:** bump @octokit/request-error from 3.0.1 to 3.0.2 ([#187](https://github.com/ybiquitous/npm-diff-action/issues/187)) ([b3eaf62](https://github.com/ybiquitous/npm-diff-action/commit/b3eaf62fc01163bef00aa75cad5441c114403768))
+
 ### [1.3.4](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.3...v1.3.4) (2022-09-08)
 
 ### [1.3.3](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.2...v1.3.3) (2022-08-19)
