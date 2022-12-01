@@ -5,7 +5,7 @@ exports[`postComment() normal case 1`] = `
   {
     "body": "
 <details>
-<summary><code>cmd arg</code></summary>
+<summary>Diff between <code>undefined</code> vundefined and vundefined</summary>
 
 \`\`\`\`diff
 some diff
@@ -15,8 +15,9 @@ some diff
 
 - Size: 1.1 KB → **956 B** (-133 B)
 - Files: 23 → **34** (+11)
+- Command: \`cmd arg\`
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
 ",
     "issue_number": 123,
     "owner": "foo",
@@ -28,7 +29,7 @@ Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-
 exports[`postComment() too long body 1`] = `
 "
 <details>
-<summary><code>cmd arg</code></summary>
+<summary>Diff between <code>undefined</code> vundefined and vundefined</summary>
 
 \`\`\`\`diff
 diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
@@ -38,15 +39,16 @@ diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
 
 - Size: 1.1 KB → **956 B** (-133 B)
 - Files: 23 → **34** (+11)
+- Command: \`cmd arg\`
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
 "
 `;
 
 exports[`postComment() too long body 2`] = `
 "
 <details>
-<summary><code>cmd arg</code></summary>
+<summary>Diff between <code>undefined</code> vundefined and vundefined</summary>
 
 \`\`\`\`diff
 diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
@@ -58,7 +60,8 @@ _(too long so truncated)_
 
 - Size: 1.1 KB → **956 B** (-133 B)
 - Files: 23 → **34** (+11)
+- Command: \`cmd arg\`
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
 "
 `;
