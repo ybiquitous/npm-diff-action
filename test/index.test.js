@@ -184,8 +184,8 @@ describe("postComment()", () => {
     Promise.reject(new RequestError(message, status, { request: { url: "", headers: {} } }));
 
   const packageInfo = Object.freeze({
-    from: { fileCount: 23, size: 1089 },
-    to: { fileCount: 34, size: 956 },
+    from: { name: "foo", version: "1.0.0", fileCount: 23, size: 1089 },
+    to: { name: "foo", version: "2.0.0", fileCount: 34, size: 956 },
   });
 
   const versions = Object.freeze({
