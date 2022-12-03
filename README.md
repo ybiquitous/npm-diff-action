@@ -25,4 +25,6 @@ jobs:
       - uses: ybiquitous/npm-diff-action@v1
 ```
 
-See also an [example](https://github.com/ybiquitous/npm-diff-action/pull/7#issuecomment-813310581).
+See also an [example](https://github.com/ybiquitous/npm-diff-action/pull/202#issuecomment-1336095687).
+
+![Screenshot of a pull request comment](screenshot.png)
