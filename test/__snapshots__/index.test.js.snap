@@ -13,9 +13,20 @@ some diff
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
-- Command: \`cmd arg\`
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
+
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+cmd arg
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
 
 Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
 ",
@@ -37,9 +48,20 @@ diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
-- Command: \`cmd arg\`
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
+
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+cmd arg
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
 
 Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
 "
@@ -58,9 +80,20 @@ _(too long so truncated)_
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
-- Command: \`cmd arg\`
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
+
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+cmd arg
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
 
 Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
 "

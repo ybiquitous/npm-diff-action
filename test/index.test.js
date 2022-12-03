@@ -141,9 +141,20 @@ index v1.2.3..v1.2.4 100644
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
-- Command: \`npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2\`
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
+
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
 
 Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
 `);
@@ -158,9 +169,9 @@ Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-
       versions,
       packageInfo: { from: { fileCount, size: from }, to: { fileCount, size: to } },
     });
-    expect(buildCommentBody(args(2, 1))).toContain("(-1 B)");
-    expect(buildCommentBody(args(1, 2))).toContain("(+1 B)");
-    expect(buildCommentBody(args(1, 1))).toContain("(±0 B)");
+    expect(buildCommentBody(args(2, 1))).toContain("(-1 B 🟢)");
+    expect(buildCommentBody(args(1, 2))).toContain("(+1 B 🟡)");
+    expect(buildCommentBody(args(1, 1))).toContain("(±0 B 🟢)");
   });
 
   test("files diff", () => {
@@ -172,9 +183,9 @@ Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-
       versions,
       packageInfo: { from: { fileCount: from, size }, to: { fileCount: to, size } },
     });
-    expect(buildCommentBody(args(2, 1))).toContain("(-1)");
-    expect(buildCommentBody(args(1, 2))).toContain("(+1)");
-    expect(buildCommentBody(args(1, 1))).toContain("(±0)");
+    expect(buildCommentBody(args(2, 1))).toContain("(-1 🟢)");
+    expect(buildCommentBody(args(1, 2))).toContain("(+1 🟡)");
+    expect(buildCommentBody(args(1, 1))).toContain("(±0 🟢)");
   });
 });
 
