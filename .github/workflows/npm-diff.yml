@@ -1,8 +1,11 @@
 name: npm diff
 
 on:
-  pull_request:
-    types: [opened, assigned]
+  # NOTE: If `permissions` is specified, using `pull_request_target` is safe.
+  # See https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
+  pull_request_target:
+    types: [opened]
+  workflow_dispatch:
 
 jobs:
   npm-diff:
