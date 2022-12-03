@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.5...v1.4.0) (2022-12-03)
+
+### Features
+
+- improve comment readability ([#200](https://github.com/ybiquitous/npm-diff-action/issues/200)) ([891621b](https://github.com/ybiquitous/npm-diff-action/commit/891621b163f204a072ca31e139d339a80174f085))
+- improve comment summary ([#203](https://github.com/ybiquitous/npm-diff-action/issues/203)) ([cc93639](https://github.com/ybiquitous/npm-diff-action/commit/cc936392daaae641bda2206a651a4df8588be7ac))
+
+### Bug Fixes
+
+- avoid failure due to too long body ([#204](https://github.com/ybiquitous/npm-diff-action/issues/204)) ([b34b2c9](https://github.com/ybiquitous/npm-diff-action/commit/b34b2c90709dab38fae14b876e8d2beccb04375d))
+- use `Error.cause` option ([#199](https://github.com/ybiquitous/npm-diff-action/issues/199)) ([094e4e3](https://github.com/ybiquitous/npm-diff-action/commit/094e4e3910b3929cba38d4ae6f9e4acfd2b4821c))
+
 ### [1.3.5](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.4...v1.3.5) (2022-11-01)
 
 ### Bug Fixes
