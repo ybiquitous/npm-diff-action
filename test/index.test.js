@@ -227,14 +227,14 @@ describe("postComment()", () => {
   test("too long body", async () => {
     const createComment = jest.fn();
     createComment.mockReturnValueOnce(
-      errorResponse(422, "Body is too long (maximum is 1000 characters)")
+      errorResponse(422, "Body is too long (maximum is 5000 characters)")
     );
     createComment.mockReturnValueOnce(Promise.resolve("OK"));
 
     await postComment({
       cmd: "cmd",
       cmdArgs: ["arg"],
-      diff: "diff-".repeat(1000),
+      diff: "diff-".repeat(10000),
       packageInfo,
       versions,
       client: { rest: { issues: { createComment } } },
