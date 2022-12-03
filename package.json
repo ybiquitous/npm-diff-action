@@ -45,8 +45,7 @@
   "dependencies": {
     "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1",
-    "@actions/github": "^5.1.1",
-    "@octokit/request-error": "^3.0.2"
+    "@actions/github": "^5.1.1"
   },
   "devDependencies": {
     "@tsconfig/node18-strictest-esm": "^1.0.1",
@@ -102,6 +101,18 @@
         "error",
         {
           "allowPattern": "NODE_ENV"
+        }
+      ],
+      "max-lines-per-function": [
+        "error",
+        {
+          "max": 100
+        }
+      ],
+      "max-statements": [
+        "error",
+        {
+          "max": 20
         }
       ],
       "import/no-internal-modules": [

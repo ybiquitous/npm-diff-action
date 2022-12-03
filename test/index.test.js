@@ -1,7 +1,6 @@
 import { execFileSync } from "child_process";
 import { readFileSync } from "fs";
 import { jest } from "@jest/globals"; // eslint-disable-line import/no-extraneous-dependencies
-import { RequestError } from "@octokit/request-error";
 
 // eslint-disable-next-line import/no-extraneous-dependencies -- Avoid increasing dependencies.
 import yaml from "js-yaml";
@@ -14,7 +13,6 @@ import {
   getPackageInfo,
 } from "../lib/index.js";
 
-// eslint-disable-next-line max-lines-per-function
 describe("extractUpdateInfo()", () => {
   const REGEX = yaml.load(readFileSync(new URL("../action.yml", import.meta.url), "utf8")).inputs
     .extract_regexp.default;
@@ -89,7 +87,6 @@ index v4.2.3..v4.2.4 100644
   });
 });
 
-// eslint-disable-next-line max-lines-per-function
 describe("buildCommentBody()", () => {
   const [cmd, cmdArgs] = npmDiffCommand({ name: "foo", from: "1.2.3", to: "1.2.4" });
 
@@ -189,11 +186,7 @@ Posted by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-
   });
 });
 
-// eslint-disable-next-line max-lines-per-function
 describe("postComment()", () => {
-  const errorResponse = (status, message) =>
-    Promise.reject(new RequestError(message, status, { request: { url: "", headers: {} } }));
-
   const packageInfo = Object.freeze({
     from: { name: "foo", version: "1.0.0", fileCount: 23, size: 1089 },
     to: { name: "foo", version: "2.0.0", fileCount: 34, size: 956 },
@@ -207,7 +200,7 @@ describe("postComment()", () => {
 
   test("normal case", async () => {
     const createComment = jest.fn();
-    createComment.mockReturnValueOnce(Promise.resolve("OK"));
+    createComment.mockResolvedValueOnce("OK");
 
     await postComment({
       cmd: "cmd",
@@ -226,10 +219,10 @@ describe("postComment()", () => {
 
   test("too long body", async () => {
     const createComment = jest.fn();
-    createComment.mockReturnValueOnce(
-      errorResponse(422, "Body is too long (maximum is 5000 characters)")
-    );
-    createComment.mockReturnValueOnce(Promise.resolve("OK"));
+    const error = new Error("Body is too long (maximum is 5000 characters)");
+    error.name = "HttpError";
+    createComment.mockRejectedValueOnce(error);
+    createComment.mockResolvedValueOnce("OK");
 
     await postComment({
       cmd: "cmd",
@@ -264,8 +257,8 @@ describe("postComment()", () => {
   });
 
   test("unexpected error", () => {
-    const createComment = jest.fn();
-    createComment.mockReturnValueOnce(errorResponse(500, "Foo"));
+    const error = new Error("Foo");
+    const createComment = jest.fn().mockRejectedValueOnce(error);
 
     return expect(
       postComment({
@@ -278,7 +271,7 @@ describe("postComment()", () => {
         repository: "foo/bar",
         pullNumber: "123",
       })
-    ).rejects.toBeInstanceOf(RequestError);
+    ).rejects.toThrow(error);
   });
 });
 
