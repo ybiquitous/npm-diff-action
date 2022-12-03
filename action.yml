@@ -1,5 +1,7 @@
 name: "npm diff"
+
 description: "`npm diff` Action"
+
 inputs:
   token:
     description: "GitHub token"
@@ -22,6 +24,7 @@ inputs:
     required: false
     default: |-
       (?:Bump|Update) (?<name>\S+) (?:from )?v?(?<from>\S+) to v?(?<to>\S+)
+
 runs:
   using: "docker"
   image: "Dockerfile"
