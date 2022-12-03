@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.4.1](https://github.com/ybiquitous/npm-diff-action/compare/v1.4.0...v1.4.1) (2022-12-03)
+
+### Bug Fixes
+
+- improve comment footer ([#205](https://github.com/ybiquitous/npm-diff-action/issues/205)) ([a2db20e](https://github.com/ybiquitous/npm-diff-action/commit/a2db20e26eaacf3e453a16f8466a01b7b8f1ed00))
+
 ## [1.4.0](https://github.com/ybiquitous/npm-diff-action/compare/v1.3.5...v1.4.0) (2022-12-03)
 
 ### Features
