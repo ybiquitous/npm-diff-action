@@ -122,7 +122,7 @@ index v1.2.3..v1.2.4 100644
   test("normal case", () => {
     expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions })).toEqual(`
 <details>
-<summary>Diff between <code>foo</code> 1.2.3 and 1.2.4</summary>
+<summary>Diff between <a href="https://www.npmjs.com/package/foo">foo</a> 1.2.3 and 1.2.4</summary>
 
 \`\`\`\`diff
 diff --git a/index.js b/index.js
