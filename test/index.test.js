@@ -153,7 +153,7 @@ See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) docume
 
 </details>
 
-Posted by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
+Reported by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
 `);
   });
 
