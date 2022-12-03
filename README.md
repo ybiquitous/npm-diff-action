@@ -1,6 +1,6 @@
 # `npm diff` Action
 
-This action posts a PR comment including output of the [`npm diff`](https://docs.npmjs.com/cli/v7/commands/npm-diff) command (since npm 7.5.0).
+This action posts a PR comment including output of the [`npm diff`](https://docs.npmjs.com/cli/commands/npm-diff) command (added with npm 7.5.0).
 
 ## Usage
 

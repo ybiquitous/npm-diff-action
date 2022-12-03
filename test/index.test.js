@@ -109,8 +109,8 @@ index v1.2.3..v1.2.4 100644
 `;
 
   const packageInfo = Object.freeze({
-    from: { fileCount: 23, size: 1089 },
-    to: { fileCount: 34, size: 956 },
+    from: { name: "foo", version: "1.2.3", fileCount: 23, size: 1089 },
+    to: { name: "foo", version: "1.2.4", fileCount: 34, size: 956 },
   });
 
   const versions = Object.freeze({
@@ -122,7 +122,7 @@ index v1.2.3..v1.2.4 100644
   test("normal case", () => {
     expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions })).toEqual(`
 <details>
-<summary><code>npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2</code></summary>
+<summary>Diff between <code>foo</code> 1.2.3 and 1.2.4</summary>
 
 \`\`\`\`diff
 diff --git a/index.js b/index.js
@@ -141,10 +141,22 @@ index v1.2.3..v1.2.4 100644
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+npm diff --diff=foo@1.2.3 --diff=foo@1.2.4 --diff-unified=2
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
+
+Posted by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
 `);
   });
 
@@ -157,9 +169,9 @@ Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-
       versions,
       packageInfo: { from: { fileCount, size: from }, to: { fileCount, size: to } },
     });
-    expect(buildCommentBody(args(2, 1))).toContain("(-1 B)");
-    expect(buildCommentBody(args(1, 2))).toContain("(+1 B)");
-    expect(buildCommentBody(args(1, 1))).toContain("(±0 B)");
+    expect(buildCommentBody(args(2, 1))).toContain("(-1 B 🟢)");
+    expect(buildCommentBody(args(1, 2))).toContain("(+1 B 🟡)");
+    expect(buildCommentBody(args(1, 1))).toContain("(±0 B 🟢)");
   });
 
   test("files diff", () => {
@@ -171,9 +183,9 @@ Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-
       versions,
       packageInfo: { from: { fileCount: from, size }, to: { fileCount: to, size } },
     });
-    expect(buildCommentBody(args(2, 1))).toContain("(-1)");
-    expect(buildCommentBody(args(1, 2))).toContain("(+1)");
-    expect(buildCommentBody(args(1, 1))).toContain("(±0)");
+    expect(buildCommentBody(args(2, 1))).toContain("(-1 🟢)");
+    expect(buildCommentBody(args(1, 2))).toContain("(+1 🟡)");
+    expect(buildCommentBody(args(1, 1))).toContain("(±0 🟢)");
   });
 });
 
@@ -183,8 +195,8 @@ describe("postComment()", () => {
     Promise.reject(new RequestError(message, status, { request: { url: "", headers: {} } }));
 
   const packageInfo = Object.freeze({
-    from: { fileCount: 23, size: 1089 },
-    to: { fileCount: 34, size: 956 },
+    from: { name: "foo", version: "1.0.0", fileCount: 23, size: 1089 },
+    to: { name: "foo", version: "2.0.0", fileCount: 34, size: 956 },
   });
 
   const versions = Object.freeze({
@@ -273,6 +285,8 @@ describe("postComment()", () => {
 describe("getPackageInfo()", () => {
   test("success", async () => {
     await expect(getPackageInfo("npm", "7.20.0")).resolves.toEqual({
+      name: "npm",
+      version: "7.20.0",
       fileCount: 2469,
       size: 12195007,
     });

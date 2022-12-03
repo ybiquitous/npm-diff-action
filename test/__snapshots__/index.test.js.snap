@@ -5,7 +5,7 @@ exports[`postComment() normal case 1`] = `
   {
     "body": "
 <details>
-<summary><code>cmd arg</code></summary>
+<summary>Diff between <code>foo</code> 1.0.0 and 2.0.0</summary>
 
 \`\`\`\`diff
 some diff
@@ -13,10 +13,22 @@ some diff
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+cmd arg
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
+
+Posted by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
 ",
     "issue_number": 123,
     "owner": "foo",
@@ -28,7 +40,7 @@ Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-
 exports[`postComment() too long body 1`] = `
 "
 <details>
-<summary><code>cmd arg</code></summary>
+<summary>Diff between <code>foo</code> 1.0.0 and 2.0.0</summary>
 
 \`\`\`\`diff
 diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
@@ -36,17 +48,29 @@ diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+cmd arg
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
+
+Posted by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
 "
 `;
 
 exports[`postComment() too long body 2`] = `
 "
 <details>
-<summary><code>cmd arg</code></summary>
+<summary>Diff between <code>foo</code> 1.0.0 and 2.0.0</summary>
 
 \`\`\`\`diff
 diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-diff-
@@ -56,9 +80,21 @@ _(too long so truncated)_
 
 </details>
 
-- Size: 1.1 KB → **956 B** (-133 B)
-- Files: 23 → **34** (+11)
+| Size | Files |
+|------|-------|
+| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0; npm v8.8.0)
+<details>
+<summary>Command details</summary>
+
+\`\`\`shell
+cmd arg
+\`\`\`
+
+See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.
+
+</details>
+
+Posted by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
 "
 `;
