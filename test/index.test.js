@@ -122,7 +122,7 @@ index v1.2.3..v1.2.4 100644
   test("normal case", () => {
     expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions })).toEqual(`
 <details>
-<summary>Diff between <code>foo</code> v1.2.3 and v1.2.4</summary>
+<summary>Diff between <code>foo</code> 1.2.3 and 1.2.4</summary>
 
 \`\`\`\`diff
 diff --git a/index.js b/index.js
@@ -156,7 +156,7 @@ See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) docume
 
 </details>
 
-Posted by [ybiquitous/npm-diff-action v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js v18.0.0 and npm v8.8.0)
+Posted by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
 `);
   });
 
