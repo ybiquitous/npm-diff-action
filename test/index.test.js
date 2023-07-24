@@ -270,7 +270,7 @@ describe("postComment()", () => {
         client: { rest: { issues: { createComment } } },
         repository: "foo/bar",
         pullNumber: "123",
-      })
+      }),
     ).rejects.toThrow(error);
   });
 });
@@ -287,7 +287,7 @@ describe("getPackageInfo()", () => {
 
   test("failure", async () => {
     await expect(getPackageInfo("npm", "7.20.100")).rejects.toThrow(
-      /Failed to get package info of "npm@7\.20\.100" due to:/u
+      /Failed to get package info of "npm@7\.20\.100" due to:/u,
     );
   });
 });
