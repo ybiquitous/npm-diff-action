@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/ybiquitous/npm-diff-action/compare/v1.4.1...v1.5.0) (2023-09-04)
+
+### Features
+
+- **deps:** bump node from 18 to 20 ([#249](https://github.com/ybiquitous/npm-diff-action/issues/249)) ([27dc904](https://github.com/ybiquitous/npm-diff-action/commit/27dc9047a0fb889bdf5ddcabe4a9a862e19e1cc7))
+
 ### [1.4.1](https://github.com/ybiquitous/npm-diff-action/compare/v1.4.0...v1.4.1) (2022-12-03)
 
 ### Bug Fixes
