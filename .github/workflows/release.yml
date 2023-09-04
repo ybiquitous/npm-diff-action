@@ -18,7 +18,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
-      - run: npm --global install npm@latest
+      - run: npm install --global npm@latest
       - run: npm ci
       - run: git config --local user.name '${{ github.actor }}'
       - run: git config --local user.email '${{ github.actor }}@users.noreply.github.com'
