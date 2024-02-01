@@ -19,7 +19,7 @@
     "npm": ">=10"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "pretest": "npm run lint",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "npm --ignore-scripts test -- --watch",
@@ -59,7 +59,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
-    "!(*.snap)": "prettier --cache --write",
+    "!(**/*.snap|.husky/**)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "standard-version": {
@@ -81,7 +81,7 @@
       "body-max-line-length": [
         1,
         "always",
-        200
+        300
       ]
     }
   },
