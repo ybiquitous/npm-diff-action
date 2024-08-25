@@ -8,6 +8,10 @@ updates:
     groups:
       eslint:
         patterns: ["eslint", "eslint-*"]
+    ignore:
+      # TODO: This will be unnecessary when updating ESLint to v9.
+      - dependency-name: "eslint"
+        update-types: ["version-update:semver-major"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
