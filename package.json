@@ -50,7 +50,7 @@
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.5",
     "eslint": "^8.57.1",
-    "eslint-config-ybiquitous": "^21.1.0",
+    "eslint-config-ybiquitous": "^22.0.0",
     "eslint-plugin-jest": "^29.0.1",
     "jest": "^30.0.5",
     "remark-preset-ybiquitous": "^0.4.4",
