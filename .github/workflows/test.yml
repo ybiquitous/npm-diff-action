@@ -26,3 +26,5 @@ jobs:
 
   lint:
     uses: ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml@main
+    permissions:
+      contents: read
