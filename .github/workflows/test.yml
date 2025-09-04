@@ -14,8 +14,8 @@ jobs:
     env:
       npm_config_engine_strict: true
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version-file: .node-version
           cache: npm
@@ -26,3 +26,5 @@ jobs:
 
   lint:
     uses: ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml@main
+    permissions:
+      contents: read
