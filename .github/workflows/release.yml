@@ -5,32 +5,6 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    uses: ybiquitous/.github/.github/workflows/action-release-reusable.yml@main
     permissions:
       contents: write
-    env:
-      MAJOR_VERSION_TAG: v1
-    steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
-        with:
-          node-version-file: .node-version
-          cache: npm
-      - run: npm install --global npm@latest
-      - run: npm ci
-      - run: git config --local user.name '${{ github.actor }}'
-      - run: git config --local user.email '${{ github.actor }}@users.noreply.github.com'
-      - run: npm run release
-      - run: echo "tag=$(git describe --abbrev=0)" >> "${GITHUB_OUTPUT}"
-        id: get_tag
-      - run: git push --follow-tags
-      - run: git tag --force --annotate --message "Release ${MAJOR_VERSION_TAG}" "${MAJOR_VERSION_TAG}"
-      - run: git push --tags --force origin "${MAJOR_VERSION_TAG}"
-      - run: |
-          gh release create "${TAG_NAME}" \
-            --notes "See the [changelog](https://github.com/${GITHUB_REPOSITORY}/blob/${TAG_NAME}/CHANGELOG.md) for details."
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG_NAME: ${{ steps.get_tag.outputs.tag }}
