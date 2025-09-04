@@ -1,9 +1,9 @@
-import { execFileSync } from "child_process";
-import { readFileSync } from "fs";
+import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { jest } from "@jest/globals"; // eslint-disable-line import/no-extraneous-dependencies
 
 // eslint-disable-next-line import/no-extraneous-dependencies -- Avoid increasing dependencies.
-import yaml from "js-yaml";
+import * as yaml from "js-yaml";
 
 import {
   extractUpdateInfo,
