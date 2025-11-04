@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/strictest",
   "compilerOptions": {
+    "checkJs": true,
     "lib": ["es2023"],
     "target": "es2022",
     "module": "node16",
