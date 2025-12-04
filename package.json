@@ -25,8 +25,8 @@
     "test:watch": "npm --ignore-scripts test -- --watch",
     "test:coverage": "npm --ignore-scripts test -- --coverage",
     "test:docker": "DOCKER_BUILDKIT=1 docker build -t npm-diff-action:dev . && docker run --rm npm-diff-action:dev && docker rmi npm-diff-action:dev",
-    "lint": "npm-run-all --print-label --silent --parallel lint:*",
-    "lint:js": "eslint --cache --ext=js,jsx,cjs,mjs,ts,tsx .",
+    "lint": "ybiq run --npm lint:js lint:md lint:types lint:commit lint:styles",
+    "lint:js": "eslint --cache",
     "lint:js:fix": "npm run lint:js -- --fix",
     "lint:md": "remark . --frail",
     "lint:md:fix": "remark . --output",
@@ -36,11 +36,14 @@
     "lint:styles:fix": "npm run prettier -- --write",
     "lint:commit": "commitlint --from HEAD~10",
     "prettier": "prettier --cache .",
-    "format": "npm-run-all --print-label --silent --parallel lint:*:fix",
+    "format": "ybiq run --npm lint:js:fix lint:md:fix lint:styles:fix",
     "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
     "prerelease": "git switch main && git pull && npm ci && npm run clean && npm test && npm run clean",
     "release": "standard-version",
-    "release:dry-run": "standard-version --dry-run"
+    "release:dry-run": "standard-version --dry-run",
+    "changelog": "if [ ! -f CHANGELOG.md ]; then opts='--first-release' ; fi && conventional-changelog --preset conventional-changelog-conventionalcommits $opts && prettier --write CHANGELOG.md",
+    "changelog:dryrun": "npm version \"${NEW_VERSION:-major}\" --no-git-tag-version && git --no-pager diff CHANGELOG.md && git checkout CHANGELOG.md package.json package-lock.json",
+    "postversion": "npm run changelog"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
@@ -49,24 +52,18 @@
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.8",
-    "eslint": "^8.57.1",
-    "eslint-config-ybiquitous": "^22.0.0",
+    "eslint": "^9.39.1",
     "eslint-plugin-jest": "^29.2.1",
+    "eslint-plugin-n": "^17.23.1",
     "jest": "^30.2.0",
     "remark-preset-ybiquitous": "^0.5.1",
     "typescript": "^5.9.3",
-    "ybiq": "^19.0.1"
+    "ybiq": "^21.0.1"
   },
   "lint-staged": {
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
     "!(**/*.snap|.husky/**)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
-  },
-  "standard-version": {
-    "sign": false,
-    "scripts": {
-      "postchangelog": "prettier --write CHANGELOG.md"
-    }
   },
   "remarkConfig": {
     "plugins": [
@@ -85,45 +82,7 @@
       ]
     }
   },
-  "eslintConfig": {
-    "root": true,
-    "extends": [
-      "ybiquitous/node",
-      "plugin:jest/recommended"
-    ],
-    "ignorePatterns": [
-      "coverage",
-      "dist",
-      "tmp"
-    ],
-    "reportUnusedDisableDirectives": true,
-    "rules": {
-      "dot-notation": [
-        "error",
-        {
-          "allowPattern": "NODE_ENV"
-        }
-      ],
-      "max-lines-per-function": [
-        "error",
-        {
-          "max": 100
-        }
-      ],
-      "max-statements": [
-        "error",
-        {
-          "max": 20
-        }
-      ],
-      "import/no-internal-modules": [
-        "error",
-        {
-          "allow": [
-            "**/lib/*"
-          ]
-        }
-      ]
-    }
+  "overrides": {
+    "conventional-changelog-conventionalcommits": "^9.1.0"
   }
 }
