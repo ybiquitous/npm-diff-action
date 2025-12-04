@@ -2,10 +2,10 @@
   "extends": "@tsconfig/strictest",
   "compilerOptions": {
     "checkJs": true,
-    "lib": ["es2023"],
-    "target": "es2022",
-    "module": "node16",
-    "moduleResolution": "node16"
+    "noEmit": true,
+    "lib": ["ESNext"],
+    "target": "esnext",
+    "module": "nodenext"
   },
   "include": ["lib"]
 }

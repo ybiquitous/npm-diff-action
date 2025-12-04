@@ -1,8 +1,8 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { jest } from "@jest/globals"; // eslint-disable-line import/no-extraneous-dependencies
+import { jest } from "@jest/globals"; // eslint-disable-line n/no-extraneous-import
 
-// eslint-disable-next-line import/no-extraneous-dependencies -- Avoid increasing dependencies.
+// eslint-disable-next-line n/no-extraneous-import -- Avoid increasing dependencies.
 import * as yaml from "js-yaml";
 
 import {
@@ -117,7 +117,7 @@ index v1.2.3..v1.2.4 100644
   });
 
   test("normal case", () => {
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions })).toEqual(`
+    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions })).toBe(`
 <details>
 <summary>Diff between <a href="https://www.npmjs.com/package/foo">foo</a> 1.2.3 and 1.2.4</summary>
 

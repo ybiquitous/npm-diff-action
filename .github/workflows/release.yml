@@ -1,10 +1,17 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  pull_request:
+    branches: [main]
+    types: [closed]
 
 jobs:
   release:
-    uses: ybiquitous/.github/.github/workflows/action-release-reusable.yml@main
+    uses: ybiquitous/.github/.github/workflows/nodejs-release-reusable.yml@530c2571685fc8fd3462fad7d19beb613e28609d # v2.3.0
+    with:
+      publish: false
+      draft: false
+      update-semver-tag: true
     permissions:
       contents: write
+      id-token: write

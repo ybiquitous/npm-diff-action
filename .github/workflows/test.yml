@@ -5,6 +5,11 @@ on:
     branches: ["main"]
   pull_request:
     branches: ["**"]
+  # Run the workflow regularly, as auto-merged PRs by bots may not trigger it.
+  schedule:
+    - cron: "0 0 1,15 * *"
+  # Allow manual triggering of the workflow.
+  workflow_dispatch:
 
 jobs:
   test:
@@ -25,6 +30,6 @@ jobs:
       - run: npm run test:docker
 
   lint:
-    uses: ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml@main
+    uses: ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml@530c2571685fc8fd3462fad7d19beb613e28609d # v2.3.0
     permissions:
       contents: read
