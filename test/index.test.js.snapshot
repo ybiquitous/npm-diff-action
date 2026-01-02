@@ -1,17 +1,12 @@
 exports[`postComment() > normal case 1`] = `
-{
-  "arguments": [
-    {
-      "owner": "foo",
-      "repo": "bar",
-      "issue_number": 123,
-      "body": "\\n<details>\\n<summary>Diff between <a href=\\"https://www.npmjs.com/package/foo\\">foo</a> 1.0.0 and 2.0.0</summary>\\n\\n\`\`\`\`diff\\nsome diff\\n\`\`\`\`\\n\\n</details>\\n\\n| Size | Files |\\n|------|-------|\\n| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |\\n\\n<details>\\n<summary>Command details</summary>\\n\\n\`\`\`shell\\ncmd arg\\n\`\`\`\\n\\nSee also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.\\n\\n</details>\\n\\nReported by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)\\n"
-    }
-  ],
-  "result": {},
-  "stack": {},
-  "this": {}
-}
+[
+  {
+    "owner": "foo",
+    "repo": "bar",
+    "issue_number": 123,
+    "body": "\\n<details>\\n<summary>Diff between <a href=\\"https://www.npmjs.com/package/foo\\">foo</a> 1.0.0 and 2.0.0</summary>\\n\\n\`\`\`\`diff\\nsome diff\\n\`\`\`\`\\n\\n</details>\\n\\n| Size | Files |\\n|------|-------|\\n| 1.1 KB → **956 B** (-133 B 🟢) | 23 → **34** (+11 🟡) |\\n\\n<details>\\n<summary>Command details</summary>\\n\\n\`\`\`shell\\ncmd arg\\n\`\`\`\\n\\nSee also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) document.\\n\\n</details>\\n\\nReported by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)\\n"
+  }
+]
 `;
 
 exports[`postComment() > too long body 1`] = `

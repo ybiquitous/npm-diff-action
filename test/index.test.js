@@ -227,7 +227,7 @@ describe("postComment()", () => {
     });
 
     assert.equal(createComment.mock.calls.length, 1);
-    t.assert.snapshot(createComment.mock.calls[0]);
+    t.assert.snapshot(createComment.mock.calls[0].arguments);
   });
 
   test("too long body", async (t) => {
