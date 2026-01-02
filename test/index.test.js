@@ -1,6 +1,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
-import { jest } from "@jest/globals"; // eslint-disable-line n/no-extraneous-import
+import { describe, test, mock, afterEach } from "node:test";
+import assert from "node:assert/strict";
 
 // eslint-disable-next-line n/no-extraneous-import -- Avoid increasing dependencies.
 import * as yaml from "js-yaml";
@@ -13,12 +14,20 @@ import {
   getPackageInfo,
 } from "../lib/index.js";
 
+function assertContain(string, substring) {
+  assert.ok(string.includes(substring), `"${string}" does not contain "${substring}"`);
+}
+
+afterEach(() => {
+  mock.reset();
+});
+
 describe("extractUpdateInfo()", () => {
   const REGEX = yaml.load(readFileSync(new URL("../action.yml", import.meta.url), "utf8")).inputs
     .extract_regexp.default;
 
   test("matched", () => {
-    expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
+    assert.deepEqual(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4", REGEX), {
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -26,7 +35,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("matched with prefix", () => {
-    expect(extractUpdateInfo("chore(deps): bump foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
+    assert.deepEqual(extractUpdateInfo("chore(deps): bump foo from 1.2.3 to 1.2.4", REGEX), {
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -34,7 +43,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("matched with suffix", () => {
-    expect(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4 in /app", REGEX)).toEqual({
+    assert.deepEqual(extractUpdateInfo("Bump foo from 1.2.3 to 1.2.4 in /app", REGEX), {
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -42,7 +51,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("matched with another action", () => {
-    expect(extractUpdateInfo("update foo from 1.2.3 to 1.2.4", REGEX)).toEqual({
+    assert.deepEqual(extractUpdateInfo("update foo from 1.2.3 to 1.2.4", REGEX), {
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -50,7 +59,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("matched without 'from'", () => {
-    expect(extractUpdateInfo("bump foo 1.2.3 to 1.2.4", REGEX)).toEqual({
+    assert.deepEqual(extractUpdateInfo("bump foo 1.2.3 to 1.2.4", REGEX), {
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -58,7 +67,7 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("matched with 'v' prefixes", () => {
-    expect(extractUpdateInfo("bump foo from v1.2.3 to v1.2.4", REGEX)).toEqual({
+    assert.deepEqual(extractUpdateInfo("bump foo from v1.2.3 to v1.2.4", REGEX), {
       name: "foo",
       from: "1.2.3",
       to: "1.2.4",
@@ -66,24 +75,26 @@ describe("extractUpdateInfo()", () => {
   });
 
   test("unmatched", () => {
-    expect(extractUpdateInfo("Bump foo from 1.2.3 to", REGEX)).toBeNull();
+    assert.equal(extractUpdateInfo("Bump foo from 1.2.3 to", REGEX), null);
   });
 });
 
 describe("npmDiffCommand()", () => {
   test("success", () => {
     const [cmd, args] = npmDiffCommand({ name: "typescript", from: "4.2.3", to: "4.2.4" });
-    expect(execFileSync(cmd, args, { encoding: "utf8" }))
-      .toContain(`diff --git a/package.json b/package.json
+    assert.ok(
+      execFileSync(cmd, args, { encoding: "utf8" }),
+      `diff --git a/package.json b/package.json
 index v4.2.3..v4.2.4 100644
 --- a/package.json
 +++ b/package.json
-@@ -3,5 +3,5 @@`);
+@@ -3,5 +3,5 @@`,
+    );
   });
 
   test("failure", () => {
     const [cmd, args] = npmDiffCommand({ name: "typescript", from: "4.2.3", to: "unknown" });
-    expect(() => execFileSync(cmd, args, { encoding: "utf8" })).toThrow("Command failed: npm diff");
+    assert.throws(() => execFileSync(cmd, args, { encoding: "utf8" }), "Command failed: npm diff");
   });
 });
 
@@ -117,7 +128,9 @@ index v1.2.3..v1.2.4 100644
   });
 
   test("normal case", () => {
-    expect(buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions })).toBe(`
+    assert.equal(
+      buildCommentBody({ cmd, cmdArgs, diff, packageInfo, versions }),
+      `
 <details>
 <summary>Diff between <a href="https://www.npmjs.com/package/foo">foo</a> 1.2.3 and 1.2.4</summary>
 
@@ -154,7 +167,8 @@ See also the [\`npm diff\`](https://docs.npmjs.com/cli/commands/npm-diff) docume
 </details>
 
 Reported by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/npm-diff-action) (Node.js 18.0.0 and npm 8.8.0)
-`);
+`,
+    );
   });
 
   test("size diff", () => {
@@ -166,9 +180,9 @@ Reported by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/np
       versions,
       packageInfo: { from: { fileCount, size: from }, to: { fileCount, size: to } },
     });
-    expect(buildCommentBody(args(2, 1))).toContain("(-1 B 🟢)");
-    expect(buildCommentBody(args(1, 2))).toContain("(+1 B 🟡)");
-    expect(buildCommentBody(args(1, 1))).toContain("(±0 B 🟢)");
+    assertContain(buildCommentBody(args(2, 1)), "(-1 B 🟢)");
+    assertContain(buildCommentBody(args(1, 2)), "(+1 B 🟡)");
+    assertContain(buildCommentBody(args(1, 1)), "(±0 B 🟢)");
   });
 
   test("files diff", () => {
@@ -180,9 +194,9 @@ Reported by [ybiquitous/npm-diff-action@v1.2.0](https://github.com/ybiquitous/np
       versions,
       packageInfo: { from: { fileCount: from, size }, to: { fileCount: to, size } },
     });
-    expect(buildCommentBody(args(2, 1))).toContain("(-1 🟢)");
-    expect(buildCommentBody(args(1, 2))).toContain("(+1 🟡)");
-    expect(buildCommentBody(args(1, 1))).toContain("(±0 🟢)");
+    assertContain(buildCommentBody(args(2, 1)), "(-1 🟢)");
+    assertContain(buildCommentBody(args(1, 2)), "(+1 🟡)");
+    assertContain(buildCommentBody(args(1, 1)), "(±0 🟢)");
   });
 });
 
@@ -198,9 +212,8 @@ describe("postComment()", () => {
     self: "1.2.0",
   });
 
-  test("normal case", async () => {
-    const createComment = jest.fn();
-    createComment.mockResolvedValueOnce("OK");
+  test("normal case", async (t) => {
+    const createComment = mock.fn(() => Promise.resolve("OK"));
 
     await postComment({
       cmd: "cmd",
@@ -213,16 +226,21 @@ describe("postComment()", () => {
       pullNumber: "123",
     });
 
-    expect(createComment.mock.calls).toHaveLength(1);
-    expect(createComment.mock.calls[0]).toMatchSnapshot();
+    assert.equal(createComment.mock.calls.length, 1);
+    t.assert.snapshot(createComment.mock.calls[0]);
   });
 
-  test("too long body", async () => {
-    const createComment = jest.fn();
-    const error = new Error("Body is too long (maximum is 5000 characters)");
-    error.name = "HttpError";
-    createComment.mockRejectedValueOnce(error);
-    createComment.mockResolvedValueOnce("OK");
+  test("too long body", async (t) => {
+    let callCount = 0;
+    const createComment = mock.fn(() => {
+      if (callCount === 0) {
+        callCount++;
+        const error = new Error("Body is too long (maximum is 5000 characters)");
+        error.name = "HttpError";
+        return Promise.reject(error);
+      }
+      return Promise.resolve("OK");
+    });
 
     await postComment({
       cmd: "cmd",
@@ -235,33 +253,33 @@ describe("postComment()", () => {
       pullNumber: "123",
     });
 
-    expect(createComment.mock.calls).toHaveLength(2);
-    expect(createComment.mock.calls[0]).toEqual([
+    assert.equal(createComment.mock.calls.length, 2);
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
+    assert.partialDeepStrictEqual(createComment.mock.calls[0].arguments, [
       {
         owner: "foo",
         repo: "bar",
         issue_number: 123,
-        body: expect.any(String),
       },
     ]);
-    expect(createComment.mock.calls[1]).toEqual([
+    // eslint-disable-next-line n/no-unsupported-features/node-builtins
+    assert.partialDeepStrictEqual(createComment.mock.calls[1].arguments, [
       {
         owner: "foo",
         repo: "bar",
         issue_number: 123,
-        body: expect.any(String),
       },
     ]);
-    expect(createComment.mock.calls[0][0].body).toMatchSnapshot();
-    expect(createComment.mock.calls[1][0].body).toMatchSnapshot();
+    t.assert.snapshot(createComment.mock.calls[0].arguments[0].body);
+    t.assert.snapshot(createComment.mock.calls[1].arguments[0].body);
   });
 
-  test("unexpected error", () => {
+  test("unexpected error", async () => {
     const error = new Error("Foo");
-    const createComment = jest.fn().mockRejectedValueOnce(error);
+    const createComment = mock.fn(() => Promise.reject(error));
 
-    return expect(
-      postComment({
+    await assert.rejects(() => {
+      return postComment({
         cmd: "cmd",
         cmdArgs: ["arg"],
         diff: "some diff",
@@ -270,14 +288,14 @@ describe("postComment()", () => {
         client: { rest: { issues: { createComment } } },
         repository: "foo/bar",
         pullNumber: "123",
-      }),
-    ).rejects.toThrow(error);
+      });
+    }, error);
   });
 });
 
 describe("getPackageInfo()", () => {
   test("success", async () => {
-    await expect(getPackageInfo("npm", "7.20.0")).resolves.toEqual({
+    assert.deepEqual(await getPackageInfo("npm", "7.20.0"), {
       name: "npm",
       version: "7.20.0",
       fileCount: 2469,
@@ -286,7 +304,8 @@ describe("getPackageInfo()", () => {
   });
 
   test("failure", async () => {
-    await expect(getPackageInfo("npm", "7.20.100")).rejects.toThrow(
+    await assert.rejects(
+      () => getPackageInfo("npm", "7.20.100"),
       /Failed to get package info of "npm@7\.20\.100" due to:/u,
     );
   });
