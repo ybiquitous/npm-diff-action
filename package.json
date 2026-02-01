@@ -54,7 +54,7 @@
     "@tsconfig/strictest": "^2.0.8",
     "@types/node": "^24.10.4",
     "eslint": "^9.39.2",
-    "eslint-plugin-n": "^17.23.1",
+    "eslint-plugin-n": "^17.23.2",
     "remark-preset-ybiquitous": "^0.5.1",
     "typescript": "^5.9.3",
     "ybiq": "^21.0.2"
