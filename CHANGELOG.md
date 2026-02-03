@@ -1,3 +1,11 @@
+## [1.7.3](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.2...v1.7.3) (2026-02-03)
+
+### Bug Fixes
+
+- **deps:** bump @actions/core from 2.0.1 to 3.0.0 ([#386](https://github.com/ybiquitous/npm-diff-action/issues/386)) ([4dd775b](https://github.com/ybiquitous/npm-diff-action/commit/4dd775bf77ef55fc8ef13ba9568b6397aab4ae90))
+- **deps:** bump @actions/exec from 2.0.0 to 3.0.0 ([#387](https://github.com/ybiquitous/npm-diff-action/issues/387)) ([cf300be](https://github.com/ybiquitous/npm-diff-action/commit/cf300be816feb9f8e5355de4b785c8295b147048))
+- **deps:** bump @actions/github from 6.0.1 to 9.0.0 ([#390](https://github.com/ybiquitous/npm-diff-action/issues/390)) ([b1d1203](https://github.com/ybiquitous/npm-diff-action/commit/b1d1203e9fab73a8e14805b3147aecfb03c5025d))
+
 ## [1.7.2](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.1...v1.7.2) (2026-01-02)
 
 ### Bug Fixes
