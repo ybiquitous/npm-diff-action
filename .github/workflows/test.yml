@@ -10,10 +10,6 @@ on:
     - cron: "0 0 1,15 * *"
   # Allow manual triggering of the workflow.
   workflow_dispatch:
-  # Auto-trigger CI jobs required to merge release PRs.
-  workflow_run:
-    workflows: ["Release PR"]
-    types: [completed]
 
 jobs:
   test:
