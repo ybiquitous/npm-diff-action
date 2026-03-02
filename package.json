@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.8",
-    "@types/node": "^25.1.0",
+    "@types/node": "^25.3.3",
     "eslint": "^9.39.2",
     "eslint-plugin-n": "^17.23.2",
     "remark-preset-ybiquitous": "^0.5.1",
