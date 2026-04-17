@@ -5,7 +5,8 @@
     "noEmit": true,
     "lib": ["ESNext"],
     "target": "esnext",
-    "module": "nodenext"
+    "module": "nodenext",
+    "types": ["node"]
   },
   "include": ["lib"]
 }
