@@ -254,7 +254,6 @@ describe("postComment()", () => {
     });
 
     assert.equal(createComment.mock.calls.length, 2);
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     assert.partialDeepStrictEqual(createComment.mock.calls[0].arguments, [
       {
         owner: "foo",
@@ -262,7 +261,6 @@ describe("postComment()", () => {
         issue_number: 123,
       },
     ]);
-    // eslint-disable-next-line n/no-unsupported-features/node-builtins
     assert.partialDeepStrictEqual(createComment.mock.calls[1].arguments, [
       {
         owner: "foo",
