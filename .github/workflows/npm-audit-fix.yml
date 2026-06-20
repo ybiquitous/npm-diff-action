@@ -13,4 +13,4 @@ jobs:
       pull-requests: write
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-      - uses: ybiquitous/npm-audit-fix-action@feat/verified-commits # TODO: revert
+      - uses: ybiquitous/npm-audit-fix-action@be39bec9716305ec1f94da0cfe1eca40b811d875 # feat/verified-commits # TODO: revert
