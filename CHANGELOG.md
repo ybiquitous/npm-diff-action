@@ -1,3 +1,14 @@
+## [1.7.4](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.3...v1.7.4) (2026-07-02)
+
+### Features
+
+- **deps:** bump node from 24 to 26 ([#428](https://github.com/ybiquitous/npm-diff-action/issues/428)) ([0442c7b](https://github.com/ybiquitous/npm-diff-action/commit/0442c7b9598065d4541d6f3b7ce50b3cd4a3a2f5))
+
+### Bug Fixes
+
+- skip npm diff for private packages ([#445](https://github.com/ybiquitous/npm-diff-action/issues/445)) ([b447451](https://github.com/ybiquitous/npm-diff-action/commit/b44745126959b487de295804ff2b9a950a61d418))
+- skip npm diff on E404 ([#448](https://github.com/ybiquitous/npm-diff-action/issues/448)) ([cabaff1](https://github.com/ybiquitous/npm-diff-action/commit/cabaff1b2c66f428837dcfb01b5b83bfe5448467))
+
 ## [1.7.3](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.2...v1.7.3) (2026-02-03)
 
 ### Bug Fixes
