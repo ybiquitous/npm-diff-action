@@ -1,3 +1,7 @@
+<!-- lint disable no-duplicate-headings -->
+
+# Changelog
+
 ## [1.7.3](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.2...v1.7.3) (2026-02-03)
 
 ### Bug Fixes
