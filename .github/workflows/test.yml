@@ -30,6 +30,6 @@ jobs:
       - run: npm run test:docker
 
   lint:
-    uses: ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml@46e5ee1d74cc40a0448a372e22cf3e5852efd59a # v3.0.2
+    uses: ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml@5e88270a455e5daf2387974dcb3cdea448076387 # v3.2.2
     permissions:
       contents: read
