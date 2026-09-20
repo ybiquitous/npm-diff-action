@@ -1,6 +1,6 @@
-<!-- lint disable no-duplicate-headings -->
-
 # Changelog
+
+<!-- lint disable no-duplicate-headings -->
 
 ## [1.7.3](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.2...v1.7.3) (2026-02-03)
 
