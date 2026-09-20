@@ -19,11 +19,11 @@
     "npm": ">=12"
   },
   "scripts": {
-    "prepare": "husky",
+    "prepare": "git config set --local core.hooksPath .githooks || true",
     "pretest": "npm run lint",
     "test": "node --test",
     "test:watch": "npm --ignore-scripts test -- --watch",
-    "test:coverage": "npm --ignore-scripts test -- --experimental-test-coverage",
+    "test:coverage": "npm --ignore-scripts test -- --coverage",
     "test:docker": "DOCKER_BUILDKIT=1 docker build -t npm-diff-action:dev . && docker run --rm npm-diff-action:dev && docker rmi npm-diff-action:dev",
     "lint": "ybiq run --npm lint:js lint:md lint:types lint:commit lint:styles",
     "lint:js": "eslint --cache",
@@ -37,12 +37,12 @@
     "lint:commit": "commitlint --from HEAD~10",
     "prettier": "prettier --cache .",
     "format": "ybiq run --npm lint:js:fix lint:md:fix lint:styles:fix",
-    "clean": "git clean -dx --force --exclude=node_modules --exclude=.husky",
+    "clean": "git clean -dx --force --exclude=node_modules",
     "prerelease": "git switch main && git pull && npm ci && npm run clean && npm test && npm run clean",
     "release": "standard-version",
     "release:dry-run": "standard-version --dry-run",
-    "changelog": "if [ ! -f CHANGELOG.md ]; then opts='--first-release' ; fi && conventional-changelog --preset conventional-changelog-conventionalcommits $opts && prettier --write CHANGELOG.md",
-    "changelog:dryrun": "npm version \"${NEW_VERSION:-major}\" --no-git-tag-version && git --no-pager diff CHANGELOG.md && git checkout CHANGELOG.md package.json package-lock.json",
+    "changelog": "ybiq changelog",
+    "changelog:dryrun": "ybiq changelog --dry-run",
     "postversion": "npm run changelog"
   },
   "dependencies": {
@@ -61,7 +61,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
-    "!(**/*.snap|.husky/**)": "prettier --cache --write",
+    "!(**/*.snapshot|.githooks/**)": "prettier --cache --write",
     "!(CHANGELOG).md": "remark --frail"
   },
   "remarkConfig": {
@@ -85,8 +85,5 @@
         150
       ]
     }
-  },
-  "overrides": {
-    "conventional-changelog-conventionalcommits": "^9.1.0"
   }
 }
