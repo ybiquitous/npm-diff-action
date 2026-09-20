@@ -23,7 +23,7 @@
     "pretest": "npm run lint",
     "test": "node --test",
     "test:watch": "npm --ignore-scripts test -- --watch",
-    "test:coverage": "npm --ignore-scripts test -- --coverage",
+    "test:coverage": "npm --ignore-scripts test -- --experimental-test-coverage",
     "test:docker": "DOCKER_BUILDKIT=1 docker build -t npm-diff-action:dev . && docker run --rm npm-diff-action:dev && docker rmi npm-diff-action:dev",
     "lint": "ybiq run --npm lint:js lint:md lint:types lint:commit lint:styles",
     "lint:js": "eslint --cache",
