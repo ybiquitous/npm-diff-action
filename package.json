@@ -57,7 +57,7 @@
     "eslint-plugin-n": "^18.3.0",
     "remark-preset-ybiquitous": "^0.5.1",
     "typescript": "^7.0.2",
-    "ybiq": "^21.0.3"
+    "ybiq": "^22.0.0"
   },
   "lint-staged": {
     "*.{js,jsx,cjs,mjs,ts,tsx}": "eslint --cache --fix",
