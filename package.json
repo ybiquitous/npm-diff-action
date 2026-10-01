@@ -53,8 +53,8 @@
   "devDependencies": {
     "@tsconfig/strictest": "^2.0.8",
     "@types/node": "^26.6.1",
-    "eslint": "^10.10.0",
-    "eslint-plugin-n": "^18.3.0",
+    "eslint": "^10.11.0",
+    "eslint-plugin-n": "^18.4.0",
     "remark-preset-ybiquitous": "^0.5.1",
     "typescript": "^7.0.2",
     "ybiq": "^22.0.0"
