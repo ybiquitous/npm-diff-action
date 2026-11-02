@@ -14,9 +14,16 @@
     "dependency"
   ],
   "type": "module",
-  "engines": {
-    "node": "26",
-    "npm": ">=12"
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "26"
+    },
+    "packageManager": {
+      "name": "npm",
+      "version": ">=12",
+      "onFail": "warn"
+    }
   },
   "scripts": {
     "prepare": "git config set --local core.hooksPath .githooks || true",
