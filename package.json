@@ -21,7 +21,8 @@
     },
     "packageManager": {
       "name": "npm",
-      "version": ">=12"
+      "version": ">=12",
+      "onFail": "warn"
     }
   },
   "scripts": {
