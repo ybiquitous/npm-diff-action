@@ -28,7 +28,7 @@
   "scripts": {
     "prepare": "git config set --local core.hooksPath .githooks || true",
     "pretest": "npm run lint",
-    "test": "node --test",
+    "test": "NODE_ENV=test node --test",
     "test:watch": "npm --ignore-scripts test -- --watch",
     "test:coverage": "npm --ignore-scripts test -- --experimental-test-coverage",
     "test:docker": "docker build -t npm-diff-action:dev . && docker run --rm npm-diff-action:dev && docker rmi npm-diff-action:dev",
