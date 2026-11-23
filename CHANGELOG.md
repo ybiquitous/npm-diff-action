@@ -6,13 +6,6 @@
 
 ### Features
 
-- **deps-dev:** bump @types/node from 26.0.1 to 26.1.2 ([#466](https://github.com/ybiquitous/npm-diff-action/issues/466)) ([a3330ac](https://github.com/ybiquitous/npm-diff-action/commit/a3330accebbf1a3ce9dd80a069b167540c6e1537))
-- **deps-dev:** bump @types/node from 26.1.2 to 26.4.0 ([#480](https://github.com/ybiquitous/npm-diff-action/issues/480)) ([3b9c0f6](https://github.com/ybiquitous/npm-diff-action/commit/3b9c0f672eef5bf445758aea47f2969951375e77))
-- **deps-dev:** bump @types/node from 26.4.0 to 26.6.1 ([#485](https://github.com/ybiquitous/npm-diff-action/issues/485)) ([41fb42d](https://github.com/ybiquitous/npm-diff-action/commit/41fb42dbaa2557118028e377c02118d6eea939b8))
-- **deps-dev:** bump eslint from 10.9.1 to 10.10.0 in the eslint group ([#483](https://github.com/ybiquitous/npm-diff-action/issues/483)) ([ab013dc](https://github.com/ybiquitous/npm-diff-action/commit/ab013dc0401dfab310cafa1160e2fe6c6107e2f0))
-- **deps-dev:** bump the eslint group across 1 directory with 2 updates ([#465](https://github.com/ybiquitous/npm-diff-action/issues/465)) ([3f3bf10](https://github.com/ybiquitous/npm-diff-action/commit/3f3bf10840fa1513ffe7a24c018da758cee38443))
-- **deps-dev:** bump the eslint group across 1 directory with 2 updates ([#479](https://github.com/ybiquitous/npm-diff-action/issues/479)) ([6a043ea](https://github.com/ybiquitous/npm-diff-action/commit/6a043ea99461d265ae5c7a44352ede596412f9c0))
-- **deps-dev:** bump typescript from 6.0.3 to 7.0.2 ([#467](https://github.com/ybiquitous/npm-diff-action/issues/467)) ([e97c959](https://github.com/ybiquitous/npm-diff-action/commit/e97c959563a8609fdd48f6ead8ffc1528585ca96))
 - **deps:** bump actions/checkout from 7.0.0 to 7.0.1 ([#462](https://github.com/ybiquitous/npm-diff-action/issues/462)) ([bf4df25](https://github.com/ybiquitous/npm-diff-action/commit/bf4df257fa14a60719351f0d33454279b57c20d7))
 - **deps:** bump actions/setup-node from 6.5.0 to 7.0.0 ([#460](https://github.com/ybiquitous/npm-diff-action/issues/460)) ([8c59b6f](https://github.com/ybiquitous/npm-diff-action/commit/8c59b6fbe04529c2711176168fa0b9342401e0a6))
 - **deps:** bump node from 24 to 26 ([#428](https://github.com/ybiquitous/npm-diff-action/issues/428)) ([0442c7b](https://github.com/ybiquitous/npm-diff-action/commit/0442c7b9598065d4541d6f3b7ce50b3cd4a3a2f5))
