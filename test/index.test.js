@@ -12,6 +12,7 @@ import {
   buildCommentBody,
   postComment,
   getPackageInfo,
+  parsePackageInfo,
 } from "../lib/index.js";
 
 function assertContain(string, substring) {
@@ -288,6 +289,44 @@ describe("postComment()", () => {
         pullNumber: "123",
       });
     }, error);
+  });
+});
+
+describe("parsePackageInfo()", () => {
+  test("success", () => {
+    assert.deepEqual(
+      parsePackageInfo("foo", "1.2.3", JSON.stringify([{ fileCount: 23, unpackedSize: 1089 }])),
+      { name: "foo", version: "1.2.3", fileCount: 23, size: 1089 },
+    );
+  });
+
+  test("not an array", () => {
+    assert.throws(
+      () => parsePackageInfo("foo", "1.2.3", JSON.stringify({ fileCount: 23, unpackedSize: 1089 })),
+      /expect "npm view" to return an array/u,
+    );
+  });
+
+  test("empty array", () => {
+    assert.throws(
+      () => parsePackageInfo("foo", "1.2.3", "[]"),
+      /expect "npm view" to return an array/u,
+    );
+  });
+
+  test("missing fields", () => {
+    assert.throws(
+      () => parsePackageInfo("foo", "1.2.3", JSON.stringify([{ fileCount: 23 }])),
+      /expect "npm view" to return fileCount and unpackedSize/u,
+    );
+  });
+
+  test("null fields", () => {
+    assert.throws(
+      () =>
+        parsePackageInfo("foo", "1.2.3", JSON.stringify([{ fileCount: null, unpackedSize: null }])),
+      /expect "npm view" to return fileCount and unpackedSize/u,
+    );
   });
 });
 
