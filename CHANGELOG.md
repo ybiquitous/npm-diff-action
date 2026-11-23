@@ -4,10 +4,6 @@
 
 ## [1.8.0](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.3...v1.8.0) (2026-11-23)
 
-### ⚠ BREAKING CHANGES
-
-- **deps:** require npm v12 ([#451](https://github.com/ybiquitous/npm-diff-action/issues/451))
-
 ### Features
 
 - **deps-dev:** bump @types/node from 26.0.1 to 26.1.2 ([#466](https://github.com/ybiquitous/npm-diff-action/issues/466)) ([a3330ac](https://github.com/ybiquitous/npm-diff-action/commit/a3330accebbf1a3ce9dd80a069b167540c6e1537))
@@ -32,7 +28,6 @@
 ### Bug Fixes
 
 - reject invalid `npm view` output instead of showing NaN ([#517](https://github.com/ybiquitous/npm-diff-action/issues/517)) ([c1b9b00](https://github.com/ybiquitous/npm-diff-action/commit/c1b9b00735adfb4a9bfc914923964aae7171195c))
-- skip npm diff for private packages ([#445](https://github.com/ybiquitous/npm-diff-action/issues/445)) ([b447451](https://github.com/ybiquitous/npm-diff-action/commit/b44745126959b487de295804ff2b9a950a61d418))
 - skip npm diff on E404 ([#448](https://github.com/ybiquitous/npm-diff-action/issues/448)) ([cabaff1](https://github.com/ybiquitous/npm-diff-action/commit/cabaff1b2c66f428837dcfb01b5b83bfe5448467))
 
 ### Performance Improvements
