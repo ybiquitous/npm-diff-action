@@ -6,16 +6,7 @@
 
 ### Features
 
-- **deps:** bump actions/checkout from 7.0.0 to 7.0.1 ([#462](https://github.com/ybiquitous/npm-diff-action/issues/462)) ([bf4df25](https://github.com/ybiquitous/npm-diff-action/commit/bf4df257fa14a60719351f0d33454279b57c20d7))
-- **deps:** bump actions/setup-node from 6.5.0 to 7.0.0 ([#460](https://github.com/ybiquitous/npm-diff-action/issues/460)) ([8c59b6f](https://github.com/ybiquitous/npm-diff-action/commit/8c59b6fbe04529c2711176168fa0b9342401e0a6))
 - **deps:** bump node from 24 to 26 ([#428](https://github.com/ybiquitous/npm-diff-action/issues/428)) ([0442c7b](https://github.com/ybiquitous/npm-diff-action/commit/0442c7b9598065d4541d6f3b7ce50b3cd4a3a2f5))
-- **deps:** bump ybiquitous/.github/.github/workflows/dependabot-auto-merge-reusable.yml from 3.0.2 to 3.2.0 ([#463](https://github.com/ybiquitous/npm-diff-action/issues/463)) ([aa143be](https://github.com/ybiquitous/npm-diff-action/commit/aa143be73b64884e72e0160e4ac46ab96af58e41))
-- **deps:** bump ybiquitous/.github/.github/workflows/dependabot-auto-merge-reusable.yml from 3.2.0 to 3.2.2 ([#475](https://github.com/ybiquitous/npm-diff-action/issues/475)) ([39befd0](https://github.com/ybiquitous/npm-diff-action/commit/39befd03bf271a0d4f4385f839766b24d4ccdda2))
-- **deps:** bump ybiquitous/.github/.github/workflows/nodejs-lint-reusable.yml from 3.0.2 to 3.2.2 ([#477](https://github.com/ybiquitous/npm-diff-action/issues/477)) ([765c191](https://github.com/ybiquitous/npm-diff-action/commit/765c1914a567caa8cd2151538e8338faf37ea12e))
-- **deps:** bump ybiquitous/.github/.github/workflows/nodejs-release-pr-reusable.yml from 3.0.2 to 3.2.0 ([#461](https://github.com/ybiquitous/npm-diff-action/issues/461)) ([a1965df](https://github.com/ybiquitous/npm-diff-action/commit/a1965df519b739387c83312fecf829509df260e6))
-- **deps:** bump ybiquitous/.github/.github/workflows/nodejs-release-pr-reusable.yml from 3.2.0 to 3.2.2 ([#476](https://github.com/ybiquitous/npm-diff-action/issues/476)) ([b9b0a28](https://github.com/ybiquitous/npm-diff-action/commit/b9b0a281cae0f21693e9574f9d5350525dec4c2e))
-- **deps:** bump ybiquitous/.github/.github/workflows/nodejs-release-reusable.yml from 3.0.2 to 3.2.0 ([#464](https://github.com/ybiquitous/npm-diff-action/issues/464)) ([04caee5](https://github.com/ybiquitous/npm-diff-action/commit/04caee5485e44b396e25cb7483d592f958fc267c))
-- **deps:** bump ybiquitous/.github/.github/workflows/nodejs-release-reusable.yml from 3.2.0 to 3.2.2 ([#478](https://github.com/ybiquitous/npm-diff-action/issues/478)) ([c411203](https://github.com/ybiquitous/npm-diff-action/commit/c4112032dce0257b804b3142343ba3beb9d2d1c7))
 - **deps:** require npm v12 ([#451](https://github.com/ybiquitous/npm-diff-action/issues/451)) ([5d3934c](https://github.com/ybiquitous/npm-diff-action/commit/5d3934cb1285352577d00b51310bbddfc837a97f))
 
 ### Bug Fixes
