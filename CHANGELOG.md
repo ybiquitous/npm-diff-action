@@ -2,6 +2,22 @@
 
 <!-- lint disable no-duplicate-headings -->
 
+## [1.8.0](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.3...v1.8.0) (2026-11-23)
+
+### Features
+
+- **deps:** bump node from 24 to 26 ([#428](https://github.com/ybiquitous/npm-diff-action/issues/428)) ([0442c7b](https://github.com/ybiquitous/npm-diff-action/commit/0442c7b9598065d4541d6f3b7ce50b3cd4a3a2f5))
+- **deps:** require npm v12 ([#451](https://github.com/ybiquitous/npm-diff-action/issues/451)) ([5d3934c](https://github.com/ybiquitous/npm-diff-action/commit/5d3934cb1285352577d00b51310bbddfc837a97f))
+
+### Bug Fixes
+
+- reject invalid `npm view` output instead of showing NaN ([#517](https://github.com/ybiquitous/npm-diff-action/issues/517)) ([c1b9b00](https://github.com/ybiquitous/npm-diff-action/commit/c1b9b00735adfb4a9bfc914923964aae7171195c))
+- skip npm diff on E404 ([#448](https://github.com/ybiquitous/npm-diff-action/issues/448)) ([cabaff1](https://github.com/ybiquitous/npm-diff-action/commit/cabaff1b2c66f428837dcfb01b5b83bfe5448467))
+
+### Performance Improvements
+
+- avoid reinstalling `npm` on every run ([#518](https://github.com/ybiquitous/npm-diff-action/issues/518)) ([547c584](https://github.com/ybiquitous/npm-diff-action/commit/547c5844fb8b5307a0ccfdd78cbe5291051058ab))
+
 ## [1.7.3](https://github.com/ybiquitous/npm-diff-action/compare/v1.7.2...v1.7.3) (2026-02-03)
 
 ### Bug Fixes
